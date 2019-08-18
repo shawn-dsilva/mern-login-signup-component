@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
   "homepage": "https://github.com/shawn-dsilva/mern-login-signup-component#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "concurrently": "^4.1.2",
     "connect-mongodb-session": "^2.2.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
