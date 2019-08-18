@@ -1,3 +1,3 @@
 ## mern-login-signup-component
 
-Complete and ready-to-use component for Login and Sign-Up using Reactjs, Node.js + Express and MongoDB
+Minimalistic, ready-to-use component for  Sessions based Login and Sign-Up using Reactjs, Node.js + Express and MongoDB
