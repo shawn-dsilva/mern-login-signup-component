@@ -25,7 +25,7 @@ router.post("/login", (req, res) => {
     const sessUser = { id: user.id, name: user.name, email: user.email };
     req.session.user = sessUser; // Auto saves session data in mongo store
 
-    res.json({ sessUser });// sends cookie with sessionID automatically in response
+    res.json({ sessUser }); // sends cookie with sessionID automatically in response
   });
 });
 
@@ -34,10 +34,10 @@ router.post("/register", (req, res) => {
 
   // Check required fields
   if (!name || !email || !password || !password2) {
-    console.log(name);
-    console.log(email);
-    console.log(password);
-    console.log(password2);
+    // console.log(name);
+    // console.log(email);
+    // console.log(password);
+    // console.log(password2);
 
     return res.status(400).json({ msg: "Please enter all fields" });
   }
@@ -81,17 +81,24 @@ router.post("/register", (req, res) => {
   });
 });
 
-router.get("/logout", (req, res) => {
-
+router.delete("/logout", (req, res) => {
   // Log out user by deleting session from store
   // Needs cookie containing sessionID to be attached to request
-  req.session.destroy((err) => { // delete session data from store, using sessionID in cookie
+  req.session.destroy((err) => {
+    // delete session data from store, using sessionID in cookie
     if (err) throw err;
     res.clearCookie("session-id"); // clears cookie containing expired sessionID
     res.send("Logged out successfully");
-
   });
 });
 
+router.get("/authchecker", (req, res) => {
+  const user = req.session.user;
+  if (user) {
+    return res.json(user);
+  } else {
+    return res.status(401).json({ msg: "Unauthorized" });
+  }
+});
 
 module.exports = router;
