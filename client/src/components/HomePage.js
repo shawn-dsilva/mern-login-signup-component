@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {
-  Button
-} from "reactstrap";
+import Login from './Login';
+import Register from './Register';
+
 
 export class HomePage extends Component {
   render() {
@@ -13,8 +13,8 @@ export class HomePage extends Component {
             <h5>Minimalistic Sessions based Authentication app <span role="img" aria-label="lock">🔒 </span><br></br>Built using Reactjs, Nodejs, Express, MongoDB and Bootstrap</h5>
           <br/>
           <div>
-            <Button color="light">Sign In</Button>{' '}
-            <Button color="light">Register</Button>{' '}
+            <Login/>
+            <Register/>
           </div>
         </div>
     </div>
