@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Login from './Login';
 import Register from './Register';
-
+import { connect } from "react-redux";
 
 export class HomePage extends Component {
   render() {
@@ -21,5 +21,8 @@ export class HomePage extends Component {
     )
   }
 }
+const mapStateToProps = (state) => ({ //Maps state to redux store as props
+  button: state.button
+});
 
-export default HomePage
+export default connect(mapStateToProps)(HomePage);

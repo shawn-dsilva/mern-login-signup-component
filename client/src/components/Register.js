@@ -13,13 +13,12 @@ class Register extends Component {
 
     state = {
   display: false,
-  button:true
 };
 
   render() {
     return (
       <div style={divStyle}>
-           {this.state.button && <Button color="light">Register</Button>}
+           {this.props.button && <Button color="light">Register</Button>}
            {/* <Button color="light">Register</Button> */}
       </div>
     )
@@ -27,7 +26,7 @@ class Register extends Component {
 }
 
 const mapStateToProps = (state) => ({ //Maps state to redux store as props
-  button: state.button
+  button: state.ui.button
 });
 
 export default connect(mapStateToProps)(Register);

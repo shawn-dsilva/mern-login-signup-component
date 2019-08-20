@@ -18,10 +18,6 @@ var divStyle = {
   padding: '1rem'
 };
 
-const mapStateToProps = (state) => ({ //Maps state to redux store as props
-  button: state.button
-});
-
 
 class Login extends Component {
 
@@ -32,12 +28,13 @@ class Login extends Component {
 
   static propTypes = {
     buttonClicked: PropTypes.func.isRequired,
+    button: PropTypes.bool,
+
   };
 
 showForm = () => {
   this.setState({
     display:true,
-    // button:false
   });
 
   this.props.buttonClicked();
@@ -55,9 +52,8 @@ onSubmit = (e) => {
   render() {
     return (
       <div style={divStyle}>
-        {console.log(store.getState().ui.button)}
-        {console.log(this.state)}
-        {store.getState().ui.button && <Button onClick={this.showForm} color="light">Sign In</Button>}
+
+        { this.props.button && <Button onClick={this.showForm} color="light">Sign In</Button>}
 
 
             {this.state.display && <Form onSubmit={this.onSubmit}>
@@ -95,5 +91,9 @@ onSubmit = (e) => {
   }
 }
 
+const mapStateToProps = (state) => ({ //Maps state element in redux store to props
+  //location of element in the state is on the right and key is on the left
+  button: state.ui.button //store.getState().ui.button another way to get button bool
+});
 
-export default connect(mapStateToProps,{ buttonClicked ,})(Login);
+export default connect(mapStateToProps,{ buttonClicked })(Login);
