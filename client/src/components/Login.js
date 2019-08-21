@@ -7,19 +7,27 @@ import {
   Input,
   Card,
    CardTitle,
+   CardSubtitle,
    Col,
   CardBody
 } from "reactstrap";
 import { connect } from "react-redux"; // API to connect component state to redux store
 import PropTypes from "prop-types";
 import { buttonClicked } from "../actions/uiActions";
+import './style.css';
 
 
 
 var divStyle = {
   display: 'inline-block',
-  padding: '1rem'
+  paddingRight: '1rem'
 };
+
+var formStyle = {
+  display: 'block',
+  margin: ' 0 auto',
+  width: '50%'
+}
 
 
 class Login extends Component {
@@ -53,17 +61,24 @@ onSubmit = (e) => {
 
 
   render() {
-    return (
-      <div style={divStyle}>
 
-        { this.props.button && <Button onClick={this.showForm} color="light">Sign In</Button>}
+    let className = 'divStyle';
+    if (!this.props.button) {
+      className = 'formStyle';
+    }
+    return (
+      <div className={className}>
+
+        { this.props.button && <Button size="lg" onClick={this.showForm} color="light">Sign In</Button>}
 
 
             {this.state.display &&
             <Card>
-                <CardBody>
+                <CardBody >
                   <CardTitle> <h2><strong>Login</strong></h2></CardTitle>
-                  <Form onSubmit={this.onSubmit}>
+                <CardSubtitle className="text-muted">Don't have an account? <a href="#" className="text-primary">Register</a></CardSubtitle>
+                <br/>
+                  <Form onSubmit={this.onSubmit} >
                   <FormGroup>
 
                     <Label for="email">Email</Label>

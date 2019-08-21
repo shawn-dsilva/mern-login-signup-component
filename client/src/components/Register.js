@@ -7,17 +7,18 @@ import {
   Input,
   Card,
    CardTitle,
+   CardSubtitle,
    Col,
   CardBody
 } from "reactstrap";
 import { connect } from "react-redux"; // API to connect component state to redux store
 import PropTypes from "prop-types";
 import { buttonClicked } from "../actions/uiActions";
+import './style.css';
 
 
 var divStyle = {
   display: 'inline-block',
-
 };
 
 
@@ -51,13 +52,18 @@ onSubmit = (e) => {
 
 
   render() {
-    return (
-      <div style={divStyle}>
-           {this.props.button && <Button onClick={this.showForm} color="light">Register</Button>}
+    let className = 'divStyle';
+    if (!this.props.button) {
+      className = 'formStyle';
+    } return (
+      <div className={className}>
+           {this.props.button && <Button size="lg" onClick={this.showForm} color="light">Register</Button>}
             {this.state.display &&
             <Card>
                 <CardBody>
                   <CardTitle> <h2><strong>Register</strong></h2></CardTitle>
+                  <CardSubtitle className="text-muted">Already have an account? <a href="#" className="text-primary">Log In</a></CardSubtitle>
+                  <br/>
                   <Form onSubmit={this.onSubmit}>
               <FormGroup>
                 <Label for='name'>Name</Label>

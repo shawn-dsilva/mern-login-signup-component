@@ -1,0 +1,19 @@
+.divStyle {
+  display: inline-block;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.formStyle {
+  display: block;
+  width: 35%;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .formStyle {
+    display: block;
+    width: 85%;
+    margin: 0 auto;
+  }
+}

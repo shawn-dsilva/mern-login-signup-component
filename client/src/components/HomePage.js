@@ -12,9 +12,10 @@ export class HomePage extends Component {
     return (
        <div className="container">
         <div className="main">
-          <h1 style={divStyle}> MERN Sessions Auth App </h1>
+          <h1 style={divStyle}> <strong>MERN</strong> Sessions Auth App </h1>
           <br/>
-            <h5 style={divStyle}>Minimalistic Sessions based Authentication app <span role="img" aria-label="lock">🔒 </span><br></br>Built using Reactjs, Nodejs, Express, MongoDB and Bootstrap</h5>
+            <h5 style={divStyle}>Minimalistic Sessions based Authentication app <span role="img" aria-label="lock">🔒 </span><br></br>Built with React + Redux, NodeJS, Express, MongoDB and Bootstrap</h5>
+            <h5 style={divStyle}>Uses Cookies <span role="img" aria-label="lock">🍪 </span></h5>
           <br/>
           <div>
             <Login/>
