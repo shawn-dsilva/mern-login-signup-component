@@ -51,23 +51,23 @@ onSubmit = (e) => {
                   <Link to="/login"> Log In. </Link></CardSubtitle>
                   <br/>
                   <Form onSubmit={this.onSubmit}>
-              <FormGroup>
-                <Label for='name'>Name</Label>
+              <FormGroup className="text-center">
+                <Label for='name'>Username</Label>
                 <Input
                   type='text'
                   name='name'
                   id='name'
-                  placeholder='Name'
+                  placeholder='Enter your Username'
                   className='mb-3'
                   onChange={this.onChange}
                 />
 
-                <Label for='email'>Email</Label>
+                <Label for='email'>E-mail</Label>
                 <Input
                   type='email'
                   name='email'
                   id='email'
-                  placeholder='Email'
+                  placeholder='you@youremail.com'
                   className='mb-3'
                   onChange={this.onChange}
                 />
@@ -77,7 +77,7 @@ onSubmit = (e) => {
                   type='password'
                   name='password'
                   id='password'
-                  placeholder='Password'
+                  placeholder='Enter your Password'
                   className='mb-3'
                   onChange={this.onChange}
                 />

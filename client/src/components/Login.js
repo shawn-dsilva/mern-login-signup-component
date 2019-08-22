@@ -55,12 +55,12 @@ onSubmit = (e) => {
                   <Form onSubmit={this.onSubmit} >
                   <FormGroup>
 
-                    <Label for="email">Email</Label>
+                    <Label for="email">E-mail</Label>
                     <Input
                       type="email"
                       name="email"
                       id="email"
-                      placeholder="Email"
+                      placeholder="you@youremail.com"
                       className="mb-3"
                       onChange={this.onChange}
                     />
@@ -70,7 +70,7 @@ onSubmit = (e) => {
                       type="password"
                       name="password"
                       id="password"
-                      placeholder="Password"
+                      placeholder="Enter your Password"
                       className="mb-3"
                       onChange={this.onChange}
                     />
