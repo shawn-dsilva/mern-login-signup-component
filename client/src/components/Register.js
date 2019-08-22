@@ -14,19 +14,12 @@ import {
 import { connect } from "react-redux"; // API to connect component state to redux store
 import PropTypes from "prop-types";
 import { buttonClicked } from "../actions/uiActions";
+import { Link } from 'react-router-dom'
 import './style.css';
-
-
-var divStyle = {
-  display: 'inline-block',
-};
 
 
 class Register extends Component {
 
-    state = {
-  display: false,
-};
 
 static propTypes = {
     buttonClicked: PropTypes.func.isRequired,
@@ -34,13 +27,6 @@ static propTypes = {
 
   };
 
-showForm = () => {
-  this.setState({
-    display:true,
-  });
-
-  this.props.buttonClicked();
-};
 
 onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -52,17 +38,17 @@ onSubmit = (e) => {
 
 
   render() {
+      this.props.buttonClicked();
     let className = 'divStyle';
     if (!this.props.button) {
       className = 'formStyle';
     } return (
       <div className={className}>
-           {this.props.button && <Button size="lg" onClick={this.showForm} color="light">Register</Button>}
-            {this.state.display &&
             <Card>
                 <CardBody>
                   <CardTitle> <h2><strong>Register</strong></h2></CardTitle>
-                  <CardSubtitle className="text-muted">Already have an account? <a href="#" className="text-primary">Log In</a></CardSubtitle>
+                  <CardSubtitle className="text-muted">Already have an account?
+                  <Link to="/login"> Log In. </Link></CardSubtitle>
                   <br/>
                   <Form onSubmit={this.onSubmit}>
               <FormGroup>
@@ -102,7 +88,7 @@ onSubmit = (e) => {
             </Form>
                 </CardBody>
             </Card>
-            }
+
       </div>
     )
   }

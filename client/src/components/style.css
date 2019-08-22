@@ -10,7 +10,7 @@
   margin: 0 auto;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
   .formStyle {
     display: block;
     width: 85%;
