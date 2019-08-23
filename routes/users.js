@@ -74,11 +74,10 @@ router.post("/login", (req, res) => {
       if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
     });
 
-    //Create session instance on data store
     const sessUser = { id: user.id, name: user.name, email: user.email };
     req.session.user = sessUser; // Auto saves session data in mongo store
 
-    res.json({ sessUser }); // sends cookie with sessionID automatically in response
+    res.json(sessUser); // sends cookie with sessionID automatically in response
   });
 });
 
@@ -97,9 +96,9 @@ router.delete("/logout", (req, res) => {
 // Check if user is Authenticated by reading session data
 // Needs cookie containing sessionID
 router.get("/authchecker", (req, res) => {
-  const user = req.session.user;
-  if (user) {
-    return res.json(user);
+  const sessUser = req.session.user;
+  if (sessUser) {
+    return res.json(sessUser);
   } else {
     return res.status(401).json({ msg: "Unauthorized" });
   }

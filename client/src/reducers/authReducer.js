@@ -6,8 +6,12 @@ import {
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
+  AUTH_SUCCESS,
+  AUTH_FAIL
 } from "../actions/types";
+import cookie from 'react-cookies';
+
 
 const initialState = {
   token: localStorage.getItem('token'),
@@ -35,22 +39,22 @@ export default function (state = initialState, action) {
 
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
-      localStorage.setItem('token', action.payload.token);
+    case AUTH_SUCCESS:
       return {
         ...state,
-        ...action.payload,
         isAuthenticated: true,
         isLoading: false,
+        user: action.payload
       };
 
     case AUTH_ERROR:
     case LOGIN_FAIL:
     case LOGOUT_SUCCESS:
     case REGISTER_FAIL:
-      localStorage.removeItem('token');
+    case AUTH_FAIL:
+      cookie.remove('session-id', { path: '/' })
       return {
         ...state,
-        token: null,
         user: null,
         isAuthenticated: false,
         isLoading: false

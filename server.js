@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const session = require("express-session");
-const store = require("session-file-store")(session);
 const MongoDBStore = require("connect-mongodb-session")(session);
 const router = express.Router();
 
@@ -15,7 +14,7 @@ const {
   SESS_SECRET,
   NODE_ENV,
   IS_PROD,
-  COOKIE_NAME,
+  COOKIE_NAME
 } = require("./config/config");
 const { MongoURI } = require("./config/database");
 const MAX_AGE = 1000 * 60 * 60 * 3; // Three hours
@@ -50,7 +49,7 @@ app.use(
     store: mongoDBstore,
     cookie: {
       maxAge: MAX_AGE,
-      sameSite: true,
+      sameSite: false,
       secure: IS_PROD
     }
   })

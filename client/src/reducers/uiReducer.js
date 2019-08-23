@@ -1,5 +1,6 @@
 import {
-  BUTTON_CLICKED
+  BUTTON_CLICKED,
+  BUTTON_RESET
 } from "./../actions/types";
 
 const initialState = {
@@ -12,6 +13,12 @@ export default function (state = initialState, action ) {
       return {
         ...state,
         button: false
+      };
+
+      case BUTTON_RESET:
+      return {
+        ...state,
+        button: true
       };
 
     default:

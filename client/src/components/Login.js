@@ -13,6 +13,8 @@ import {
 import { connect } from "react-redux"; // API to connect component state to redux store
 import PropTypes from "prop-types";
 import { buttonClicked } from "../actions/uiActions";
+import { login } from "../actions/authActions";
+
 import { Link } from 'react-router-dom'
 import './style.css';
 
@@ -20,10 +22,17 @@ import './style.css';
 
 class Login extends Component {
 
+  state = {
+    email: "",
+    password: "",
+    msg: ""
+  }
+
   static propTypes = {
     buttonClicked: PropTypes.func.isRequired,
     button: PropTypes.bool,
-
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
   };
 
 
@@ -33,6 +42,12 @@ onChange = (e) => {
 
 onSubmit = (e) => {
     e.preventDefault();
+
+    const { email, password} = this.state;
+
+    const user = { email, password};
+
+    this.props.login(user);
   };
 
 
@@ -89,7 +104,8 @@ onSubmit = (e) => {
 
 const mapStateToProps = (state) => ({ //Maps state element in redux store to props
   //location of element in the state is on the right and key is on the left
-  button: state.ui.button //store.getState().ui.button another way to get button bool
+  button: state.ui.button, //store.getState().ui.button another way to get button bool
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps,{ buttonClicked })(Login);
+export default connect(mapStateToProps,{ login, buttonClicked })(Login);

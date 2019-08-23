@@ -8,7 +8,6 @@ import {
   Card,
    CardTitle,
    CardSubtitle,
-   Col,
   CardBody
 } from "reactstrap";
 import { connect } from "react-redux"; // API to connect component state to redux store
