@@ -5,6 +5,8 @@ import cookie from 'react-cookies'
 import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
   AUTH_SUCCESS,
   AUTH_FAIL,
   LOGOUT_SUCCESS,
@@ -35,6 +37,34 @@ export const isAuth = () => (dispatch) => {
     });
 
 }
+
+//Register New User
+export const register = ({ name, email, password }) => (dispatch) => {
+  // Headers
+  const headers = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  // Request body
+  const body = JSON.stringify({ name, email, password });
+
+  axios
+    .post("/api/users/register", body, headers)
+    .then((res) =>
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch((err) => {
+      dispatch({
+        type: REGISTER_FAIL
+      });
+    });
+};
+
 //Login User
 export const login = ({ email, password }) => (dispatch) => {
   // Headers

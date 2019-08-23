@@ -12,18 +12,26 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux"; // API to connect component state to redux store
 import PropTypes from "prop-types";
+import { Redirect } from 'react-router-dom'
 import { buttonClicked } from "../actions/uiActions";
 import { Link } from 'react-router-dom'
+import { register } from '../actions/authActions';
 import './style.css';
 
 
 class Register extends Component {
 
+    state = {
+    name: "",
+    email: "",
+    password: "",
+    msg: ""
+  }
 
 static propTypes = {
     buttonClicked: PropTypes.func.isRequired,
     button: PropTypes.bool,
-
+    register: PropTypes.func.isRequired,
   };
 
 
@@ -33,6 +41,13 @@ onChange = (e) => {
 
 onSubmit = (e) => {
     e.preventDefault();
+
+    const { name, email, password} = this.state;
+
+    const user = { name, email, password};
+
+    this.props.register(user);
+    this.props.history.push('/login');
   };
 
 
@@ -97,4 +112,4 @@ const mapStateToProps = (state) => ({ //Maps state to redux store as props
   button: state.ui.button
 });
 
-export default connect(mapStateToProps, { buttonClicked })(Register);
+export default connect(mapStateToProps, { register, buttonClicked })(Register);

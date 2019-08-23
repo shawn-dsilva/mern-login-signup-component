@@ -5,10 +5,10 @@ const User = require("../models/User"); // User model
 
 // Registers a new User
 router.post("/register", (req, res) => {
-  const { name, email, password, password2 } = req.body;
+  const { name, email, password } = req.body;
 
   // Check required fields
-  if (!name || !email || !password || !password2) {
+  if (!name || !email || !password) {
     // console.log(name);
     // console.log(email);
     // console.log(password);
@@ -17,10 +17,10 @@ router.post("/register", (req, res) => {
     return res.status(400).json({ msg: "Please enter all fields" });
   }
 
-  // Check passwords match
-  if (password !== password2) {
-    return res.status(400).json({ msg: "Passwords do not match" });
-  }
+  // // Check passwords match
+  // if (password !== password2) {
+  //   return res.status(400).json({ msg: "Passwords do not match" });
+  // }
 
   //Check password length
   if (password.length < 6) {
@@ -49,7 +49,11 @@ router.post("/register", (req, res) => {
         // Save user
         newUser
           .save()
-          .then()
+          .then(
+            res.json({
+              msg: "Successfully Registered"
+            })
+          )
           .catch((err) => console.log(err));
       })
     );
