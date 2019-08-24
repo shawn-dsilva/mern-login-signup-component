@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Route, Switch, Link } from 'react-router-dom'
 import {
   Button,
   Card,

@@ -13,7 +13,6 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux"; // API to connect component state to redux store
 import PropTypes from "prop-types";
-import { Redirect } from 'react-router-dom'
 import { buttonClicked } from "../actions/uiActions";
 import { Link } from 'react-router-dom'
 import { register } from '../actions/authActions';
@@ -29,33 +28,45 @@ class Register extends Component {
     msg: ""
   }
 
-static propTypes = {
+  static propTypes = {
     buttonClicked: PropTypes.func.isRequired,
     button: PropTypes.bool,
     register: PropTypes.func.isRequired,
     status: PropTypes.object.isRequired,
   };
 
+  // Removes sign in and register buttons from homepage
+  // upon mounting of Register component
   componentDidMount() {
     this.props.buttonClicked();
-}
+  };
 
-componentDidUpdate(prevProps) {
-      const status = this.props.status;
+  componentDidUpdate(prevProps) {
+    const status = this.props.status;
 
-     if (status !== prevProps.status) {
-
+    // Changes status message if it is different from previous message
+    if (status !== prevProps.status) {
       if (status.id === "REGISTER_FAIL") {
         this.setState({ msg: status.statusMsg.msg });
+      } else {
+          this.setState({ msg: this.props.status.statusMsg.msg });
       }
     }
-};
 
-onChange = (e) => {
+    // Redirects to Log In screen after a delay of 2secs if successfully registered
+    if( status.id === "REGISTER_SUCCESS") {
+      setTimeout( () =>{
+        this.props.history.push('/login');}, 2000);
+    }
+  };
+
+  // Sets the value of the input fields to the state items of the same name
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-onSubmit = (e) => {
+  // Calls action to register user
+  onSubmit = (e) => {
     e.preventDefault();
 
     const { name, email, password} = this.state;
@@ -63,14 +74,23 @@ onSubmit = (e) => {
     const user = { name, email, password};
 
     this.props.register(user);
-    if( !this.props.status.id === "REGISTER_FAIL") {
-    this.props.history.push('/login');
-    }
+
   };
 
 
   render() {
     let className = 'divStyle';
+
+    // If HTTP 400 error, render alert with red color, else if
+    // it is 200 OK, render alert in green
+    let alert;
+    if(this.state.msg && this.props.status.respCode === 400)  {
+        alert = <Alert color="danger">{this.state.msg}</Alert>
+    } else if ( this.state.msg && this.props.status.respCode === 200 ) {
+        alert = <Alert color="success">{this.state.msg} <br/> Redirecting to Log In screen
+        </Alert>
+    }
+
     if (!this.props.button) {
       className = 'formStyle';
     } return (
@@ -81,11 +101,7 @@ onSubmit = (e) => {
                   <CardSubtitle className="text-muted">Already have an account?
                   <Link to="/login"> Log In. </Link></CardSubtitle>
                   <br/>
-
-                      {this.state.msg ? (
-              <Alert color="danger">{this.state.msg}</Alert>
-            ) : null}
-
+                  {alert}
                   <Form onSubmit={this.onSubmit}>
               <FormGroup className="text-center">
                 <Label for='name'>Username</Label>

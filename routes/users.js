@@ -80,7 +80,7 @@ router.post("/login", (req, res) => {
       const sessUser = { id: user.id, name: user.name, email: user.email };
       req.session.user = sessUser; // Auto saves session data in mongo store
 
-      res.json(sessUser); // sends cookie with sessionID automatically in response
+      res.json({ msg: " Registered Successfully", sessUser }); // sends cookie with sessionID automatically in response
     });
   });
 });
