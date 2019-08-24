@@ -8,7 +8,8 @@ import {
   Card,
    CardTitle,
    CardSubtitle,
-  CardBody
+  CardBody,
+  Alert
 } from "reactstrap";
 import { connect } from "react-redux"; // API to connect component state to redux store
 import PropTypes from "prop-types";
@@ -32,8 +33,23 @@ static propTypes = {
     buttonClicked: PropTypes.func.isRequired,
     button: PropTypes.bool,
     register: PropTypes.func.isRequired,
+    status: PropTypes.object.isRequired,
   };
 
+  componentDidMount() {
+    this.props.buttonClicked();
+}
+
+componentDidUpdate(prevProps) {
+      const status = this.props.status;
+
+     if (status !== prevProps.status) {
+
+      if (status.id === "REGISTER_FAIL") {
+        this.setState({ msg: status.statusMsg.msg });
+      }
+    }
+};
 
 onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -47,12 +63,13 @@ onSubmit = (e) => {
     const user = { name, email, password};
 
     this.props.register(user);
+    if( !this.props.status.id === "REGISTER_FAIL") {
     this.props.history.push('/login');
+    }
   };
 
 
   render() {
-      this.props.buttonClicked();
     let className = 'divStyle';
     if (!this.props.button) {
       className = 'formStyle';
@@ -64,6 +81,11 @@ onSubmit = (e) => {
                   <CardSubtitle className="text-muted">Already have an account?
                   <Link to="/login"> Log In. </Link></CardSubtitle>
                   <br/>
+
+                      {this.state.msg ? (
+              <Alert color="danger">{this.state.msg}</Alert>
+            ) : null}
+
                   <Form onSubmit={this.onSubmit}>
               <FormGroup className="text-center">
                 <Label for='name'>Username</Label>
@@ -109,7 +131,8 @@ onSubmit = (e) => {
 }
 
 const mapStateToProps = (state) => ({ //Maps state to redux store as props
-  button: state.ui.button
+  button: state.ui.button,
+  status: state.status
 });
 
 export default connect(mapStateToProps, { register, buttonClicked })(Register);

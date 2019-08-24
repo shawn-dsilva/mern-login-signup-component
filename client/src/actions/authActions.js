@@ -1,6 +1,6 @@
 import axios from "axios";
 import cookie from 'react-cookies'
-
+import { returnStatus } from "./statusActions";
 
 import {
   LOGIN_SUCCESS,
@@ -19,8 +19,6 @@ export const isAuth = () => (dispatch) => {
       "session-id": cookie.load('session-id')
     }
     };
-
-    console.log(cookie.load('session-id'));
 
     axios
     .get("/api/users/authchecker", headers)
@@ -59,6 +57,7 @@ export const register = ({ name, email, password }) => (dispatch) => {
       })
     )
     .catch((err) => {
+       dispatch(returnStatus(err.response.data, err.response.status, 'REGISTER_FAIL'))
       dispatch({
         type: REGISTER_FAIL
       });
@@ -86,6 +85,7 @@ export const login = ({ email, password }) => (dispatch) => {
       })
     )
     .catch((err) => {
+      dispatch(returnStatus(err.response.data, err.response.status, 'LOGIN_FAIL'))
       dispatch({
         type: LOGIN_FAIL
       });

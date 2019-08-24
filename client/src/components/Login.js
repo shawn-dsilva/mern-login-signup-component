@@ -8,7 +8,8 @@ import {
   Card,
    CardTitle,
    CardSubtitle,
-  CardBody
+  CardBody,
+  Alert
 } from "reactstrap";
 import { connect } from "react-redux"; // API to connect component state to redux store
 import PropTypes from "prop-types";
@@ -33,7 +34,23 @@ class Login extends Component {
     button: PropTypes.bool,
     login: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool,
+    status: PropTypes.object.isRequired,
   };
+
+  componentDidMount() {
+    this.props.buttonClicked();
+}
+
+componentDidUpdate(prevProps) {
+      const status = this.props.status;
+
+     if (status !== prevProps.status) {
+
+      if (status.id === "LOGIN_FAIL") {
+        this.setState({ msg: status.statusMsg.msg });
+      }
+    }
+};
 
 
 onChange = (e) => {
@@ -52,7 +69,6 @@ onSubmit = (e) => {
 
 
   render() {
-      this.props.buttonClicked();
 
     let className = 'divStyle';
     if (!this.props.button) {
@@ -67,6 +83,10 @@ onSubmit = (e) => {
                 <CardSubtitle className="text-muted">Don't have an account?
                 <Link to="/register"> Register. </Link></CardSubtitle>
                 <br/>
+
+                {this.state.msg ? (
+              <Alert color="danger">{this.state.msg}</Alert>
+            ) : null}
                   <Form onSubmit={this.onSubmit} >
                   <FormGroup>
 
@@ -106,6 +126,7 @@ const mapStateToProps = (state) => ({ //Maps state element in redux store to pro
   //location of element in the state is on the right and key is on the left
   button: state.ui.button, //store.getState().ui.button another way to get button bool
   isAuthenticated: state.auth.isAuthenticated,
+  status: state.status
 });
 
 export default connect(mapStateToProps,{ login, buttonClicked })(Login);
