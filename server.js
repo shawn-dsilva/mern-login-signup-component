@@ -3,7 +3,7 @@ const app = express();
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const router = express.Router();
-
+const morgan = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
 
@@ -38,6 +38,9 @@ const mongoDBstore = new MongoDBStore({
 // Express Bodyparser
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+//Morgan setup
+app.use(morgan("dev"));
 
 // Express-Session
 app.use(

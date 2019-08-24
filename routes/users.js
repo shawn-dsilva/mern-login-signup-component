@@ -76,12 +76,12 @@ router.post("/login", (req, res) => {
     // Validate password
     bcrypt.compare(password, user.password).then((isMatch) => {
       if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
+
+      const sessUser = { id: user.id, name: user.name, email: user.email };
+      req.session.user = sessUser; // Auto saves session data in mongo store
+
+      res.json(sessUser); // sends cookie with sessionID automatically in response
     });
-
-    const sessUser = { id: user.id, name: user.name, email: user.email };
-    req.session.user = sessUser; // Auto saves session data in mongo store
-
-    res.json(sessUser); // sends cookie with sessionID automatically in response
   });
 });
 
