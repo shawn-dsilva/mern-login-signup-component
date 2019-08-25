@@ -80,7 +80,7 @@ router.post("/login", (req, res) => {
       const sessUser = { id: user.id, name: user.name, email: user.email };
       req.session.user = sessUser; // Auto saves session data in mongo store
 
-      res.json({ msg: " Registered Successfully", sessUser }); // sends cookie with sessionID automatically in response
+      res.json({ msg: " Logged In Successfully", sessUser }); // sends cookie with sessionID automatically in response
     });
   });
 });
@@ -102,7 +102,7 @@ router.delete("/logout", (req, res) => {
 router.get("/authchecker", (req, res) => {
   const sessUser = req.session.user;
   if (sessUser) {
-    return res.json(sessUser);
+    return res.json({ msg: " Authenticated Successfully", sessUser });
   } else {
     return res.status(401).json({ msg: "Unauthorized" });
   }

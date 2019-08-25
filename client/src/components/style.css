@@ -6,11 +6,11 @@
 
 .formStyle {
   display: block;
-  width: 40%;
+  width: 45%;
   margin: 0 auto;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 75em) {
   .formStyle {
     display: block;
     width: 85%;
