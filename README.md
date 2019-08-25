@@ -10,6 +10,12 @@ Minimalistic, ready-to-use component for  Sessions based Login and Sign-Up using
  - Persistence achieved using Sessions, with session ID stored on Cookie
  - Logout deletes session in database and cookie from browser
  -  Fully responsive across Desktop, Tablet and Mobile
+ 
+ ## Image Gallery
+ 
+[img]https://i.imgur.com/mjdMhvd.png[/img]
+
+
 
 ##  Prerequisites 
 
