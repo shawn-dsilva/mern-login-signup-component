@@ -4,16 +4,45 @@
   padding-right: 1rem;
 }
 
+/* Mobile first design, Portrait displays under 48em/768px */
 .formStyle {
   display: block;
-  width: 45%;
+  width: 85%;
   margin: 0 auto;
 }
 
-@media only screen and (max-width: 75em) {
+/* Chrome iPad present/Portrait 48em = 768px */
+@media (min-width: 48em) {
   .formStyle {
     display: block;
-    width: 85%;
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+
+/* Chrome iPad Pro Preset/Portrait 64em = 1024px */
+@media (min-width: 64em) {
+  .formStyle {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/* HD displays/Landscape 75em = 1200px */
+@media (min-width: 75em) {
+  .formStyle {
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+  }
+}
+
+/* Full HD displays/Landscape 120em = 1920px */
+@media (min-width: 120em) {
+  .formStyle {
+    display: block;
+    width: 50%;
     margin: 0 auto;
   }
 }
