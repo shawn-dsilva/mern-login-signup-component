@@ -10,6 +10,10 @@ Minimalistic, ready-to-use component for  Sessions based Login and Sign-Up using
  - Persistence achieved using Sessions, with session ID stored on Cookie
  - Logout deletes session in database and cookie from browser
  -  Fully responsive across Desktop, Tablet and Mobile
+ 
+ ## Image Gallery
+ 
+ <blockquote class="imgur-embed-pub" lang="en" data-id="a/nKgWxF4"><a href="//imgur.com/a/nKgWxF4"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 ##  Prerequisites 
 
