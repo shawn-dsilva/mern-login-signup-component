@@ -13,7 +13,9 @@ Minimalistic, ready-to-use component for  Sessions based Login and Sign-Up using
  
  ## Image Gallery
  
- <blockquote class="imgur-embed-pub" lang="en" data-id="a/nKgWxF4"><a href="//imgur.com/a/nKgWxF4"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+[img]https://i.imgur.com/mjdMhvd.png[/img]
+
+
 
 ##  Prerequisites 
 
