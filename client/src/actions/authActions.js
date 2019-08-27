@@ -21,7 +21,7 @@ export const isAuth = () => (dispatch) => {
     };
 
     axios
-    .get("/api/users/authchecker", headers)
+    .get("/api/users/authchecker",{withCredentials:true})
     .then((res) =>
       dispatch({
         type: AUTH_SUCCESS,
