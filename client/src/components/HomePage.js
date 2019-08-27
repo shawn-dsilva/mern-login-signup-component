@@ -21,28 +21,14 @@ color:'white'
 export class HomePage extends Component {
 
   componentDidMount() {
+    // Check if session cookie is present
     store.dispatch(isAuth());
   }
 
-  state = {
-    display: false,
-  };
-
   static propTypes = {
-    buttonClicked: PropTypes.func.isRequired,
     button: PropTypes.bool,
     isAuthenticated: PropTypes.bool,
-
   };
-
-
-showForm = () => {
-  this.setState({
-    display:true,
-  });
-
-  this.props.buttonClicked();
-};
 
   render() {
 
@@ -81,8 +67,8 @@ showForm = () => {
 }
 const mapStateToProps = (state) => ({ //Maps state to redux store as props
   button: state.ui.button,
-    isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated
 
 });
 
-export default connect(mapStateToProps, {buttonClicked})(HomePage);
+export default connect(mapStateToProps)(HomePage);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import {
   Button,
   Form,
@@ -6,40 +6,38 @@ import {
   Label,
   Input,
   Card,
-   CardTitle,
-   CardSubtitle,
+  CardTitle,
+  CardSubtitle,
   CardBody,
   Alert
 } from "reactstrap";
 import { connect } from "react-redux"; // API to connect component state to redux store
 import PropTypes from "prop-types";
 import { buttonClicked } from "../actions/uiActions";
-import { Link } from 'react-router-dom'
-import { register } from '../actions/authActions';
-import './style.css';
-
+import { Link } from "react-router-dom";
+import { register } from "../actions/authActions";
+import "./style.css";
 
 class Register extends Component {
-
-    state = {
+  state = {
     name: "",
     email: "",
     password: "",
     msg: ""
-  }
+  };
 
   static propTypes = {
     buttonClicked: PropTypes.func.isRequired,
     button: PropTypes.bool,
     register: PropTypes.func.isRequired,
-    status: PropTypes.object.isRequired,
+    status: PropTypes.object.isRequired
   };
 
   // Removes sign in and register buttons from homepage
   // upon mounting of Register component
   componentDidMount() {
     this.props.buttonClicked();
-  };
+  }
 
   componentDidUpdate(prevProps) {
     const status = this.props.status;
@@ -49,16 +47,17 @@ class Register extends Component {
       if (status.id === "REGISTER_FAIL") {
         this.setState({ msg: status.statusMsg.msg });
       } else {
-          this.setState({ msg: this.props.status.statusMsg.msg });
+        this.setState({ msg: this.props.status.statusMsg.msg });
       }
     }
 
     // Redirects to Log In screen after a delay of 2secs if successfully registered
-    if( status.id === "REGISTER_SUCCESS") {
-      setTimeout( () =>{
-        this.props.history.push('/login');}, 2000);
+    if (status.id === "REGISTER_SUCCESS") {
+      setTimeout(() => {
+        this.props.history.push("/login");
+      }, 2000);
     }
-  };
+  }
 
   // Sets the value of the input fields to the state items of the same name
   onChange = (e) => {
@@ -69,86 +68,97 @@ class Register extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { name, email, password} = this.state;
+    const { name, email, password } = this.state;
 
-    const user = { name, email, password};
+    const user = { name, email, password };
 
     this.props.register(user);
-
   };
 
-
   render() {
-    let className = 'divStyle';
+    let className = "divStyle";
 
     // If HTTP 400 error, render alert with red color, else if
     // it is 200 OK, render alert in green
     let alert;
-    if(this.state.msg && this.props.status.respCode === 400)  {
-        alert = <Alert color="danger">{this.state.msg}</Alert>
-    } else if ( this.state.msg && this.props.status.respCode === 200 ) {
-        alert = <Alert color="success">{this.state.msg} <br/> Redirecting to Log In screen
+    if (this.state.msg && this.props.status.respCode === 400) {
+      alert = <Alert color="danger">{this.state.msg}</Alert>;
+    } else if (this.state.msg && this.props.status.respCode === 200) {
+      alert = (
+        <Alert color="success">
+          {this.state.msg} <br /> Redirecting to Log In screen
         </Alert>
+      );
     }
 
     if (!this.props.button) {
-      className = 'formStyle';
-    } return (
+      className = "formStyle";
+    }
+    return (
       <div className={className}>
-            <Card>
-                <CardBody>
-                  <CardTitle> <h2><strong>Register</strong></h2></CardTitle>
-                  <CardSubtitle className="text-muted">Already have an account?
-                  <Link to="/login"> Log In. </Link></CardSubtitle>
-                  <br/>
-                  {alert}
-                  <Form onSubmit={this.onSubmit}>
+        <Card>
+          <CardBody>
+            <CardTitle>
+              <h2>
+                <strong>Register</strong>
+              </h2>
+            </CardTitle>
+            <CardSubtitle className="text-muted">
+              Already have an account?
+              <Link to="/login"> Log In. </Link>
+            </CardSubtitle>
+            <br />
+            {alert}
+            <Form onSubmit={this.onSubmit}>
               <FormGroup className="text-center">
-                <Label for='name'>Username</Label>
+                <Label for="name">Username</Label>
                 <Input
-                  type='text'
-                  name='name'
-                  id='name'
-                  placeholder='Enter your Username'
-                  className='mb-3'
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Enter your Username"
+                  className="mb-3"
                   onChange={this.onChange}
                 />
 
-                <Label for='email'>E-mail</Label>
+                <Label for="email">E-mail</Label>
                 <Input
-                  type='email'
-                  name='email'
-                  id='email'
-                  placeholder='you@youremail.com'
-                  className='mb-3'
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="you@youremail.com"
+                  className="mb-3"
                   onChange={this.onChange}
                 />
 
-                <Label for='password'>Password</Label>
+                <Label for="password">Password</Label>
                 <Input
-                  type='password'
-                  name='password'
-                  id='password'
-                  placeholder='Enter your Password'
-                  className='mb-3'
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Enter your Password"
+                  className="mb-3"
                   onChange={this.onChange}
                 />
-                <Button color='dark' style={{ marginTop: '2rem' }} block>
+                <Button color="dark" style={{ marginTop: "2rem" }} block>
                   Register
                 </Button>
               </FormGroup>
             </Form>
-                </CardBody>
-            </Card>
-
+          </CardBody>
+        </Card>
       </div>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => ({ //Maps state to redux store as props
+const mapStateToProps = (state) => ({
+  //Maps state to redux store as props
   button: state.ui.button,
   status: state.status
 });
 
-export default connect(mapStateToProps, { register, buttonClicked })(Register);
+export default connect(
+  mapStateToProps,
+  { register, buttonClicked }
+)(Register);
