@@ -10,7 +10,6 @@ import {
   AUTH_SUCCESS,
   AUTH_FAIL
 } from "../actions/types";
-import cookie from 'react-cookies';
 
 
 const initialState = {
@@ -51,7 +50,6 @@ export default function (state = initialState, action) {
     case LOGOUT_SUCCESS:
     case REGISTER_FAIL:
     case AUTH_FAIL:
-      cookie.remove('session-id', { path: '/' })
       return {
         ...state,
         user: null,

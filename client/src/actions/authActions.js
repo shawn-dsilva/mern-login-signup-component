@@ -1,5 +1,4 @@
 import axios from "axios";
-import cookie from 'react-cookies'
 import { returnStatus } from "./statusActions";
 
 import {
@@ -14,11 +13,6 @@ import {
 
 //Check if user is already logged in
 export const isAuth = () => (dispatch) => {
-   const headers = {
-    headers: {
-      "session-id": cookie.load('session-id')
-    }
-    };
 
     axios
     .get("/api/users/authchecker",{withCredentials:true})
@@ -95,14 +89,9 @@ export const login = ({ email, password }) => (dispatch) => {
 
 //Logout User and Destroy session
 export const logout = () => (dispatch) => {
-   const headers = {
-    headers: {
-      "session-id": cookie.load('session-id')
-    }
-    };
 
     axios
-    .delete("/api/users/logout", headers)
+    .delete("/api/users/logout", { withCredentials: true })
     .then((res) =>
       dispatch({
         type: LOGOUT_SUCCESS,
