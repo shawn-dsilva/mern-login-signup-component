@@ -18,34 +18,34 @@ Minimalistic, ready-to-use component for Sessions based Login and Sign-Up using 
 - NPM
 - React
 - MongoDB Atlas MongoURI
-- .env file with ENV variables
+- **.env file with ENV variables**, a .env template is provided
 
 ## Quick Start
 
 Clone the repository
 
 ```
-$ https://github.com/shawn-dsilva/mern-login-signup-component.git
+ https://github.com/shawn-dsilva/mern-login-signup-component.git
 ```
 
 Install packages for Node backend
 
 ```
-$ cd mern-login-signup-component
-$ npm install
+ cd mern-login-signup-component
+ npm install
 ```
 
 Install packages for React client
 
 ```
-$ cd mern-login-signup-component/client
-$ npm install
+ cd mern-login-signup-component/client
+ npm install
 ```
 
 Start Dev Server ( both React server and Nodejs server )
 
 ```
-npm run dev
+ npm run dev
 ```
 
 ## Image Gallery

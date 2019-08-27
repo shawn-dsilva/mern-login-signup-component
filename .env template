@@ -1,0 +1,8 @@
+HOST=localhost
+PORT=5000
+DB_USERNAME=yourDBusername
+DB_PASSWORD=yourDBpassword
+DB_CLUSTER=yourDBcluster
+SESS_SECRET=yourSessionSecret
+NODE_ENV='development'
+COOKIE_NAME='your-session-cookie-name'
