@@ -9,6 +9,7 @@ import {
   AUTH_SUCCESS,
   AUTH_FAIL,
   LOGOUT_SUCCESS,
+  IS_LOADING,
 } from "./types";
 
 //Check if user is already logged in
@@ -50,12 +51,14 @@ export const register = ({ name, email, password }) => (dispatch) => {
         type: REGISTER_SUCCESS,
         payload: res.data
       });
+      dispatch({ type: IS_LOADING })
     })
     .catch((err) => {
       dispatch(returnStatus(err.response.data, err.response.status, 'REGISTER_FAIL'))
       dispatch({
         type: REGISTER_FAIL
       });
+      dispatch({ type: IS_LOADING })
     });
 };
 
@@ -73,17 +76,20 @@ export const login = ({ email, password }) => (dispatch) => {
 
   axios
     .post("/api/users/login", body, headers)
-    .then((res) =>
+    .then((res) => {
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data
-      })
+      });
+      dispatch({ type: IS_LOADING });
+    }
     )
     .catch((err) => {
       dispatch(returnStatus(err.response.data, err.response.status, 'LOGIN_FAIL'))
       dispatch({
         type: LOGIN_FAIL
       });
+      dispatch({ type: IS_LOADING })
     });
 };
 

@@ -9,11 +9,12 @@ import {
    CardTitle,
    CardSubtitle,
   CardBody,
-  Alert
+  Alert,
+  Spinner
 } from "reactstrap";
 import { connect } from "react-redux"; // API to connect component state to redux store
 import PropTypes from "prop-types";
-import { buttonClicked } from "../actions/uiActions";
+import { buttonClicked,isLoading } from "../actions/uiActions";
 import { login } from "../actions/authActions";
 
 import { Link } from 'react-router-dom'
@@ -31,10 +32,12 @@ class Login extends Component {
 
   static propTypes = {
     buttonClicked: PropTypes.func.isRequired,
+    isLoading: PropTypes.func.isRequired,
     button: PropTypes.bool,
     login: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool,
     status: PropTypes.object.isRequired,
+    loading: PropTypes.bool
   };
 
   componentDidMount() {
@@ -63,7 +66,7 @@ onSubmit = (e) => {
     const { email, password} = this.state;
 
     const user = { email, password};
-
+    this.props.isLoading();
     this.props.login(user);
   };
 
@@ -95,6 +98,7 @@ onSubmit = (e) => {
                       type="email"
                       name="email"
                       id="email"
+                      size="lg"
                       placeholder="you@youremail.com"
                       className="mb-3"
                       onChange={this.onChange}
@@ -105,12 +109,14 @@ onSubmit = (e) => {
                       type="password"
                       name="password"
                       id="password"
+                      size="lg"
                       placeholder="Enter your Password"
                       className="mb-3"
                       onChange={this.onChange}
                     />
-                    <Button color="dark" style={{ marginTop: "2rem" }} block>
-                      Login
+                    <Button size="lg" color="dark" style={{ marginTop: "2rem" }} block>
+                       { this.props.loading ?
+                       <span >Logging in.. <Spinner size="sm" color="light" /></span> : <span>Login</span>}
                     </Button>
                   </FormGroup>
                 </Form>
@@ -126,7 +132,8 @@ const mapStateToProps = (state) => ({ //Maps state element in redux store to pro
   //location of element in the state is on the right and key is on the left
   button: state.ui.button, //store.getState().ui.button another way to get button bool
   isAuthenticated: state.auth.isAuthenticated,
-  status: state.status
+  status: state.status,
+  loading: state.ui.loading
 });
 
-export default connect(mapStateToProps,{ login, buttonClicked })(Login);
+export default connect(mapStateToProps,{ login, isLoading, buttonClicked })(Login);
