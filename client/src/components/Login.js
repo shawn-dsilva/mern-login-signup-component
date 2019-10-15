@@ -50,7 +50,7 @@ componentDidUpdate(prevProps) {
      if (status !== prevProps.status) {
 
       if (status.id === "LOGIN_FAIL") {
-        this.setState({ msg: status.statusMsg.msg });
+        this.setState({ msg: status.statusMsg });
       }
     }
 };

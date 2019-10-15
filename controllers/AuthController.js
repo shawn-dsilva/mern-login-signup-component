@@ -1,5 +1,7 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/User"); // User model
+const Joi = require('@hapi/joi');
+const { registerSchema, loginSchema } = require('../utils/userValidations');
 
 exports.isAuth = (req,res,next) => {
   const sessUser = req.session.user;
@@ -72,23 +74,26 @@ exports.loginUser = (req, res) => {
   const { email, password } = req.body;
 
   // basic validation
-  if (!email || !password) {
-    return res.status(400).json({ msg: "Please enter all fields" });
-  }
-  //check for existing user
-  User.findOne({ email }).then((user) => {
-    if (!user) return res.status(400).json({ msg: "User does not exist" });
+  const result = loginSchema.validate({ email, password});
+  if(!result.error) {
+    //check for existing user
+    User.findOne({ email }).then((user) => {
+      if (!user) return res.status(400).json("Incorrect Email or Password");
 
-    // Validate password
-    bcrypt.compare(password, user.password).then((isMatch) => {
-      if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
+      // Validate password
+      bcrypt.compare(password, user.password).then((isMatch) => {
+        if (!isMatch) return res.status(400).json("Incorrect Email or Password");
 
-      const sessUser = { id: user.id, name: user.name, email: user.email };
-      req.session.user = sessUser; // Auto saves session data in mongo store
+        const sessUser = { id: user.id, name: user.name, email: user.email };
+        req.session.user = sessUser; // Auto saves session data in mongo store
 
-      res.json({ msg: " Logged In Successfully", sessUser }); // sends cookie with sessionID automatically in response
+        res.json(sessUser); // sends cookie with sessionID automatically in response
+      });
     });
-  });
+  } else {
+    console.log(result.error)
+    res.status(422).json(result.error);
+  }
 };
 
 exports.logoutUser = (req, res) => {
