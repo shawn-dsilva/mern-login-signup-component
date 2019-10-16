@@ -42,7 +42,7 @@ export class Profile extends Component {
         <div className="main">
           <Card>
             <CardBody>
-          <CardTitle><h1>{ user ? `Welcome, ${user.sessUser.name}`: ''} <span role="img" aria-label="party-popper">🎉 </span> </h1></CardTitle>
+          <CardTitle><h1>{ user ? `Welcome, ${user.name}`: ''} <span role="img" aria-label="party-popper">🎉 </span> </h1></CardTitle>
           <br/>
            <CardSubtitle><h5> You are now Logged In <span role="img" aria-label="clap">👏 </span></h5></CardSubtitle>
           <br/>

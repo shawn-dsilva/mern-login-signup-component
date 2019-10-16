@@ -92,7 +92,7 @@ exports.loginUser = (req, res) => {
     });
   } else {
     console.log(result.error)
-    res.status(422).json(result.error);
+    res.status(422).json(result.error.toString());
   }
 };
 
@@ -108,7 +108,7 @@ exports.logoutUser = (req, res) => {
 exports.authChecker = (req, res) => {
   const sessUser = req.session.user;
   if (sessUser) {
-    return res.json({ msg: " Authenticated Successfully", sessUser });
+    return res.json(sessUser);
   } else {
     return res.status(401).json({ msg: "Unauthorized" });
   }
