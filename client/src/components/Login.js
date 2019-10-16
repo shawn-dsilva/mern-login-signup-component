@@ -86,7 +86,6 @@ onSubmit = (e) => {
                 <CardSubtitle className="text-muted">Don't have an account?
                 <Link to="/register"> Register. </Link></CardSubtitle>
                 <br/>
-
                 {this.state.msg ? (
               <Alert color="danger">{this.state.msg}</Alert>
             ) : null}
