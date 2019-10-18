@@ -1,8 +1,5 @@
 const Joi = require('@hapi/joi');
 
-
-const message = "Password must be between 6-16 characters, upper and lower case characters and numbers are allowed"
-
 const email = Joi.string().email({ minDomainSegments: 2}).required();
 
 const password = Joi.string().min(6).max(16).pattern(/^[a-zA-Z0-9]/).required().messages({
