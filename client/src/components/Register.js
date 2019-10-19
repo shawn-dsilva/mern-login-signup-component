@@ -47,9 +47,9 @@ class Register extends Component {
     // Changes status message if it is different from previous message
     if (status !== prevProps.status) {
       if (status.id === "REGISTER_FAIL") {
-        this.setState({ msg: status.statusMsg.msg });
+        this.setState({ msg: status.statusMsg });
       } else {
-        this.setState({ msg: this.props.status.statusMsg.msg });
+        this.setState({ msg: this.props.status.statusMsg });
       }
     }
 
@@ -83,7 +83,7 @@ class Register extends Component {
     // If HTTP 400 error, render alert with red color, else if
     // it is 200 OK, render alert in green
     let alert;
-    if (this.state.msg && this.props.status.respCode === 400) {
+    if (this.state.msg && this.props.status.respCode >= 400) {
       alert = <Alert color="danger">{this.state.msg}</Alert>;
     } else if (this.state.msg && this.props.status.respCode === 200) {
       alert = (
@@ -113,13 +113,14 @@ class Register extends Component {
             {alert}
             <Form onSubmit={this.onSubmit}>
               <FormGroup className="text-center">
-                <Label for="name">Username</Label>
+                <Label for="name">Name</Label>
                 <Input
                   type="text"
                   name="name"
                   id="name"
-                  placeholder="Enter your Username"
+                  placeholder="Enter your name"
                   className="mb-3"
+                  size="lg"
                   onChange={this.onChange}
                 />
 
@@ -130,6 +131,7 @@ class Register extends Component {
                   id="email"
                   placeholder="you@youremail.com"
                   className="mb-3"
+                  size="lg"
                   onChange={this.onChange}
                 />
 
@@ -140,9 +142,10 @@ class Register extends Component {
                   id="password"
                   placeholder="Enter your Password"
                   className="mb-3"
+                  size="lg"
                   onChange={this.onChange}
                 />
-                <Button color="dark" style={{ marginTop: "2rem" }} block>
+                <Button color="dark" className="mt-5" size="lg" block>
                 { this.props.loading ?
                        <span >Registering.. <Spinner size="sm" color="light" /></span> : <span>Register</span>}
                 </Button>
