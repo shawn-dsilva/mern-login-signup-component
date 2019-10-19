@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const { registerUser, loginUser, logoutUser, authChecker } = require("../controllers/AuthController");
+const { registerLimiter, loginLimiter } = require("../utils/rateLimiter");
 
 // Registers a new User
-router.post("/register", registerUser );
+router.post("/register", registerLimiter, registerUser );
 
 // Logs In a User, creates session in mongo store
 // and returns a cookie containing sessionID, also called "session-id"
-router.post("/login", loginUser );
+router.post("/login", loginLimiter, loginUser );
 
 // Log out user by deleting session from store
 // and deleting cookie on client side

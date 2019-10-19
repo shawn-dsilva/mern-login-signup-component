@@ -3,6 +3,7 @@ const User = require("../models/User"); // User model
 const Joi = require('@hapi/joi');
 const { registerSchema, loginSchema } = require('../utils/userValidations');
 
+
 exports.isAuth = (req,res,next) => {
   const sessUser = req.session.user;
   if(sessUser) {
