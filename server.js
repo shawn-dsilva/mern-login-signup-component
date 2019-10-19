@@ -6,6 +6,7 @@ const router = express.Router();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
+const helmet = require('helmet')
 
 // Constants
 const {
@@ -57,6 +58,8 @@ app.use(
     }
   })
 );
+
+app.use(helmet())
 
 router.get("/", (req, res) => res.send("HELLO FRIEND"));
 
