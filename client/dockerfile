@@ -1,0 +1,15 @@
+# using node 10.16.3 LTS Image based on Alpine Linux image
+FROM node:10.16.3-alpine
+
+WORKDIR /app
+
+# sets env to node_modules in app
+ENV PATH /app/node_modules/.bin:$PATH
+
+# copies package.json from directory and installs packages,also installs react
+COPY package.json /app/package.json
+RUN npm install react-scripts -g
+RUN npm install
+
+# start command
+CMD ["npm", "start"]
