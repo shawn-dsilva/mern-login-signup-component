@@ -1,0 +1,25 @@
+version: "3"
+services:
+    server:
+        container_name: server
+        build:
+            context: .
+            dockerfile: dockerfile
+        ports:
+            - "5000:5000"
+        volumes:
+            - .:/server
+            - /server/node_modules
+
+    client:
+        container_name: client
+        build:
+            context: ./client
+            dockerfile: dockerfile
+        ports:
+            - "80:3000"
+        volumes:
+            - ./client:/client
+            - /client/node_modules
+        links:
+            - server
