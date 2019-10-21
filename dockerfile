@@ -8,7 +8,7 @@ EXPOSE 5000
 ENV PATH /server/node_modules/.bin:$PATH
 
 # copies package.json from directory and installs packages
-COPY package.json /server/package.json
+COPY package*.json /server/
 RUN npm install
 
 # start command

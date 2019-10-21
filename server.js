@@ -6,7 +6,8 @@ const router = express.Router();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
-const helmet = require('helmet')
+const helmet = require('helmet');
+const cors = require('cors');
 
 // Constants
 const {
@@ -60,6 +61,16 @@ app.use(
 );
 
 app.use(helmet())
+
+const corsOptions = {
+  origin: 'http://localhost',
+  credentials: true,
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+
+app.use(cors(corsOptions));
+
 
 router.get("/", (req, res) => res.send("HELLO FRIEND"));
 

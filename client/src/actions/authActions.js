@@ -12,6 +12,9 @@ import {
   IS_LOADING,
 } from "./types";
 
+
+axios.defaults.baseURL = "http://localhost:5000";
+
 //Check if user is already logged in
 export const isAuth = () => (dispatch) => {
 
