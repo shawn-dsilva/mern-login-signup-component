@@ -1,7 +1,8 @@
 version: "3"
 services:
-    server:
-        container_name: server
+    auth-server:
+        container_name: auth-server
+        hostname: auth-server
         build:
             context: .
             dockerfile: dockerfile
@@ -13,6 +14,7 @@ services:
 
     client-prod:
         container_name: client-prod
+        hostname: client-prod
         build:
             context: ./client
             dockerfile: Dockerfile-prod
