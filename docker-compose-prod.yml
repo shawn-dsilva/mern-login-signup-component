@@ -28,4 +28,4 @@ services:
 networks:
     default:
         external:
-            name: nginx-rp-gateway_default
+            name: nginxrpgateway_default
