@@ -25,3 +25,7 @@ services:
             - /client/node_modules
         links:
             - server
+networks:
+    default:
+        external:
+            name: nginx-rp-gateway_default
