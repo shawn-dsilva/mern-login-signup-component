@@ -24,7 +24,7 @@ services:
             - ./client:/client
             - /client/node_modules
         links:
-            - server
+            - auth-server
 networks:
     default:
         external:
