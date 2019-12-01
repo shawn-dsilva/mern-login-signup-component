@@ -23,7 +23,7 @@ exports.registerUser = (req, res) => {
 
       // Check for existing user
       User.findOne({ email: email }).then((user) => {
-        if (user) return res.status(400).json({ msg: "User already exists" });
+        if (user) return res.status(400).json("User already exists");
 
         //New User created
         const newUser = new User({
@@ -42,9 +42,7 @@ exports.registerUser = (req, res) => {
             newUser
               .save()
               .then(
-                res.json({
-                  msg: "Successfully Registered"
-                })
+                res.json("Successfully Registered")
               )
               .catch((err) => console.log(err));
           })
