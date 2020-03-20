@@ -41,6 +41,13 @@ Install packages for React client
  cd mern-login-signup-component/client
  npm install
 ```
+To Test Locally
+
+remove the line ```"homepage": "https://demos.shawndsilva.com/sessions-auth-app",```
+from ```client/package.json```
+remove ```basename="/sessions-auth-app"```
+from ```client/src/index.js```
+
 
 Start Dev Server ( both React server and Nodejs server )
 

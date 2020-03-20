@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 
 ReactDOM.render(
+  //REMOVE BASENAME if not hosting from sub directory
   <BrowserRouter basename="/sessions-auth-app">
     <App />
   </BrowserRouter>, document.getElementById('root'));
