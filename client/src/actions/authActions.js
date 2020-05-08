@@ -13,7 +13,7 @@ import {
 } from "./types";
 
 //Uncomment below for local testing
-axios.defaults.baseURL = "http://localhost:5000";
+// axios.defaults.baseURL = "http://localhost:5000";
 
 //uncomment and set url to your own for prod
 //axios.defaults.baseURL = "https://demos.shawndsilva.com/sessions-auth-app"
@@ -79,6 +79,7 @@ export const login = ({ email, password }) => (dispatch) => {
   axios
     .post("/api/users/login", body, headers)
     .then((res) => {
+      console.log(res);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data
