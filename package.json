@@ -31,7 +31,7 @@
     "express-rate-limit": "^5.1.1",
     "express-session": "^1.17.0",
     "helmet": "^3.21.3",
-    "mongoose": "^5.9.5",
+    "mongoose": "^5.12.3",
     "morgan": "^1.9.1",
     "react-router-dom": "^5.1.2",
     "session-file-store": "^1.4.0"
