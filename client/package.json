@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "bootstrap": "^4.4.1",
     "react": "^16.13.0",
     "react-cookies": "^0.1.1",
