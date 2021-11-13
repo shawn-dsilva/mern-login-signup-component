@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Login from './Login';
 import Register from './Register';
 import { connect } from "react-redux";
-import { Route, Switch, Link } from 'react-router-dom'
+import { Route, Routes, Link } from 'react-router-dom'
 import {
   Button,
 } from "reactstrap";
@@ -11,7 +11,7 @@ import { buttonClicked } from "../actions/uiActions";
 import './style.css';
 import store from '../store';
 import { isAuth } from '../actions/authActions'
-import {Redirect} from 'react-router-dom'
+import {Navigate} from 'react-router-dom'
 
 
 var divStyle = {
@@ -33,7 +33,7 @@ export class HomePage extends Component {
   render() {
 
     if(this.props.isAuthenticated) {
-      return <Redirect to="/profile" />
+      return <Navigate to="/profile" />
     }
 
     return (
@@ -46,10 +46,10 @@ export class HomePage extends Component {
           <br/>
           <div>
 
-            <Switch>
-              <Route exact path ="/login" component={Login}/>
-              <Route exact path ="/register" component={Register}/>
-            </Switch>
+            <Routes>
+              <Route path ="/login" element={<Login/>}/>
+              <Route path ="/register" element={<Register/>}/>
+            </Routes>
 
              { this.props.button && <Link className='divStyle' to="/login">
                <Button size="lg"  color="light">Sign In</Button>

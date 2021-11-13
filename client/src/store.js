@@ -1,14 +1,16 @@
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk';
-import rootReducer from './reducers';
+import { configureStore } from '@reduxjs/toolkit'
 
-const initialState = {};
-const middleware = [thunk];
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+import authReducer from './reducers/authReducer';
+import uiReducer from './reducers/uiReducer';
+import statusReducer from './reducers/statusReducer';
 
-const store = createStore(rootReducer, initialState, composeEnhancers(
-    applyMiddleware(...middleware),
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    ));
+const store = configureStore({
+    reducer: {
+      // Define a top-level state field named `todos`, handled by `todosReducer`
+      auth: authReducer,
+      status: statusReducer,
+      ui: uiReducer
+    }
+  })
 
 export default store;

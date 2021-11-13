@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 import PropTypes from "prop-types";
 import './style.css';
-import { Redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { logout } from '../actions/authActions';
 import { buttonReset} from '../actions/uiActions';
 
@@ -32,7 +32,7 @@ export class Profile extends Component {
   render() {
 
     if(!this.props.authState.isAuthenticated) {
-      return <Redirect to="/" />
+      return <Navigate to="/" />
     }
 
     const {user} = this.props.authState;
