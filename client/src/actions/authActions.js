@@ -1,4 +1,5 @@
 import axios from "axios";
+import { authSuccess } from "../reducers/authReducer";
 import { returnStatus } from "./statusActions";
 
 import {
@@ -23,16 +24,12 @@ export const isAuth = () => (dispatch) => {
 
     axios
     .get("/api/users/authchecker",{withCredentials:true})
-    .then((res) =>
-      dispatch({
-        type: AUTH_SUCCESS,
-        payload: res.data
-      })
+    .then(res => {
+      console.log(res.data);
+      dispatch(authSuccess({payload:res.data}))
+    }
     )
     .catch((err) => {
-      dispatch({
-        type: AUTH_FAIL
-      });
     });
 
 }

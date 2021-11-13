@@ -24,7 +24,6 @@
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:5000",
-  "homepage": "https://demos.shawndsilva.com/sessions-auth-app",
   "eslintConfig": {
     "extends": "react-app"
   },

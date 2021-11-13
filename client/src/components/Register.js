@@ -56,7 +56,7 @@ class Register extends Component {
     // Redirects to Log In screen after a delay of 2secs if successfully registered
     if (status.id === "REGISTER_SUCCESS") {
       setTimeout(() => {
-        this.props.history.push("/login");
+        this.context.history.push("/login");
       }, 2000);
     }
   }

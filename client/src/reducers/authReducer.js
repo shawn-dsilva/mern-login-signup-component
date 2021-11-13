@@ -1,3 +1,5 @@
+import { createSlice, isAnyOf } from '@reduxjs/toolkit'
+
 import {
 
   AUTH_ERROR,
@@ -12,40 +14,43 @@ import {
 
 
 const initialState = {
-  isAuthenticated: null,
   user: null,
 };
 
-export default function (state = initialState, action) {
-
-  switch (action.type) {
-    case REGISTER_SUCCESS:
+const authSlice = createSlice({
+  name:'auth',
+  initialState,
+  reducers: {
+    registerSuccess(state, action) {
       return {
         ...state,
         user: action.payload
       };
-
-    case LOGIN_SUCCESS:
-    case AUTH_SUCCESS:
-      return {
-        ...state,
-        isAuthenticated: true,
-        user: action.payload
-      };
-
-    case AUTH_ERROR:
-    case LOGIN_FAIL:
-    case LOGOUT_SUCCESS:
-    case REGISTER_FAIL:
-    case AUTH_FAIL:
-      return {
-        ...state,
-        user: null,
-        isAuthenticated: false,
+    },
+    authSuccess(state, action) {
+      console.log(state.isAuthenticated);
+      state.isAuthenticated.push(action.payload)
+    }
+  },
+  extraReducers: builder => {
+    builder.addMatcher( isAnyOf(LOGIN_SUCCESS),
+    (state,action) => {
+      console.log(action.payload);
+        state.isAuthenticated = true;
+        state.user = action.payload;
+    })
+    .addMatcher(
+      isAnyOf(AUTH_ERROR, LOGIN_FAIL, LOGOUT_SUCCESS,REGISTER_FAIL,AUTH_FAIL),
+      (state,action) => {
+        return {
+          ...state,
+          user: null,
+        }
       }
-
-    default:
-        return state;
+    )
   }
+})
 
-}
+export const {registerSuccess, authSuccess} = authSlice.actions
+
+export default authSlice.reducer
