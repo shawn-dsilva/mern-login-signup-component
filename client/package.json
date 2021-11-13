@@ -4,17 +4,17 @@
   "private": true,
   "dependencies": {
     "axios": "^0.21.2",
-    "bootstrap": "^4.4.1",
-    "react": "^16.13.0",
+    "bootstrap": "^4.6.1",
+    "react": "^16.14.0",
     "react-cookies": "^0.1.1",
-    "react-dom": "^16.13.0",
-    "react-redux": "^7.2.0",
-    "react-router-dom": "^5.1.2",
+    "react-dom": "^16.14.0",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "^4.0.3",
-    "react-transition-group": "^4.3.0",
-    "reactstrap": "^8.4.1",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "react-transition-group": "^4.4.2",
+    "reactstrap": "^8.10.1",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

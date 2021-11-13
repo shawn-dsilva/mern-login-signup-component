@@ -22,21 +22,21 @@
   "dependencies": {
     "@hapi/joi": "^16.1.8",
     "bcryptjs": "^2.4.3",
-    "bootstrap": "^4.4.1",
-    "concurrently": "^6.0.0",
-    "connect-mongodb-session": "^2.3.1",
+    "bootstrap": "^4.6.1",
+    "concurrently": "^6.4.0",
+    "connect-mongodb-session": "^2.4.1",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "express": "^4.17.1",
-    "express-rate-limit": "^5.1.1",
-    "express-session": "^1.17.0",
-    "helmet": "^3.21.3",
-    "mongoose": "^5.12.3",
-    "morgan": "^1.9.1",
-    "react-router-dom": "^5.1.2",
-    "session-file-store": "^1.4.0"
+    "express-rate-limit": "^5.5.1",
+    "express-session": "^1.17.2",
+    "helmet": "^3.23.3",
+    "mongoose": "^5.13.13",
+    "morgan": "^1.10.0",
+    "react-router-dom": "^5.3.0",
+    "session-file-store": "^1.5.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.15"
   }
 }
