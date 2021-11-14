@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import Login from './Login';
-import Register from './Register';
-import Profile from './Profile'
-
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import {isAuth} from './authService';
 import {selectAuth} from './authSlice';
 
-function Auth() {
+function Auth({button}) {
 
     const auth = useSelector(selectAuth);
     const navigate = useNavigate();
-    const [button, buttonClicked] = useState(true);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -34,11 +29,6 @@ function Auth() {
             <p>Built with Functional Component and Hooks based React, Redux Toolkit, NodeJS, Express and MongoDB</p>
           <br/>
 
-          <Routes>
-             <Route path="/login" element={<Login buttonClicked={buttonClicked} />} />
-             <Route path="/register" element={<Register buttonClicked={buttonClicked} />} />
-           </Routes>
-
             <div style={{display:'flex', margin:'auto', justifyContent:'space-between'}}>
                 { button && <Link className='main-button' to="/login">
                      Sign In
@@ -48,7 +38,7 @@ function Auth() {
                     Register
                 </Link>}
              </div>
-            
+            <Outlet/>
         </div>
     )
 }
