@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import './Auth.css';
 import {Link} from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import {Login as LoginService} from './authService';
+
 
 function Login({buttonClicked}) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
 
     useEffect(() => {
         buttonClicked(false);
@@ -13,7 +17,8 @@ function Login({buttonClicked}) {
 
 
     const handleSubmit = () => {
-
+        const data = {'email':email, 'password':password};
+        dispatch(LoginService(data));
     }
 
     return (

@@ -6,6 +6,11 @@
     flex-direction: column;
 }
 
+.auth-container p {
+    width: 48%;
+    margin:0 auto;
+}
+
 .auth-card {
     display: flex;
     flex-direction: column;
@@ -55,4 +60,14 @@
     display: block;
     margin: 0.5rem auto;
     margin-bottom: 1rem;
+}
+
+.main-button {
+    margin:auto 3rem;
+    font-size: 2rem;
+}
+
+.main-button button {
+    padding:1.5rem;
+    height: auto;
 }
