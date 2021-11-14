@@ -1,9 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {Link} from 'react-router-dom';
 
-function Register() {
+function Register({buttonClicked}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+
+    useEffect(() => {
+      buttonClicked(false);
+    },[])
+
 
     const handleSubmit = () => {
 
@@ -13,6 +19,9 @@ function Register() {
       <div className="auth-card">
         <div className="auth-card-container">
         <h1>REGISTER</h1>
+        <span>
+        Already have an account? <Link className='divStyle' to="/login"> Login. </Link>
+        </span>
 
         <label>Username </label>
         <input

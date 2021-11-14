@@ -1,9 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Auth.css';
-function Login() {
+import {Link} from 'react-router-dom';
+
+function Login({buttonClicked}) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    useEffect(() => {
+        buttonClicked(false);
+    },[])
+
 
     const handleSubmit = () => {
 
@@ -13,6 +20,9 @@ function Login() {
         <div className="auth-card">
             <div className="auth-card-container">
             <h1>LOGIN</h1>
+            <span>
+                Don't have an account? <Link className='divStyle' to="/register"> Register. </Link>
+            </span>
             <label>Email </label>
         <input
          type="email"
