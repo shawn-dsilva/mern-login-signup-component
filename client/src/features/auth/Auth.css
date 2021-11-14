@@ -65,9 +65,12 @@
 .main-button {
     margin:auto 3rem;
     font-size: 2rem;
-}
-
-.main-button button {
-    padding:1.5rem;
-    height: auto;
+    font-weight: 400;
+    cursor:pointer;
+    background-color: #e2e2e2;
+    border: 2px lightgrey solid;
+    border-radius: 5px;
+    padding:1rem 2rem;
+    color:#272a2c;
+    text-decoration: none;
 }

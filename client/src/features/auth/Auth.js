@@ -30,11 +30,11 @@ function Auth() {
 
             <div style={{display:'flex', margin:'auto', justifyContent:'space-between'}}>
                 { button && <Link className='main-button' to="/login">
-                     <button>Sign In</button>
+                     Sign In
                 </Link>}
 
                 {button && <Link className='main-button' to="/register">
-                    <button>Register</button>
+                    Register
                 </Link>}
              </div>
             
