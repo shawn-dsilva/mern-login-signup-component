@@ -1,9 +1,37 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import './Auth.css';
 function Login() {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = () => {
+
+    }
+
     return (
-        <div>
-            
+        <div className="auth-card">
+            <div className="auth-card-container">
+            <h1>LOGIN</h1>
+            <label>Email </label>
+        <input
+         type="email"
+         value={email}
+         name="email"
+         onChange={e => setEmail(e.target.value)}
+         >
+        </input>
+
+        <label>Password</label>
+        <input
+         type="password"
+         value={password}
+         name="password"
+         onChange={e => setPassword(e.target.value)}
+         >
+        </input>
+        <button  onClick={e => handleSubmit(e)}>Login</button>
+        </div>
         </div>
     )
 }

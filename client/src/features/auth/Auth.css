@@ -1,0 +1,44 @@
+.auth-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+
+.auth-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 25%;
+    height: 50%;
+    margin: auto;
+}
+
+.auth-card-container {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.auth-card input, button {
+    height: 3rem;
+    font-size: 1.5rem;
+    border:2px solid lightgrey;
+    border-radius: 5px;
+    margin: 1rem 0;
+}
+
+.auth-card label {
+    font-weight: bold;
+    color:darkslategrey;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.auth-card button {
+   height: auto;
+   padding:1rem;
+   cursor:pointer;
+}
