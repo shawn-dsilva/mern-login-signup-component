@@ -10,7 +10,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-       <Auth/>
+        <Routes>
+          <Route path="/profile" element={<Profile/>} />
+          <Route path="/" element={<Auth/>} />
+        </Routes>
       </header>
     </div>
   );
