@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import Login from './Login'
-import Register from './Register'
-import { Routes, Route, Link } from "react-router-dom";
+import Login from './Login';
+import Register from './Register';
+import Profile from './Profile'
+
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import {isAuth} from './authService';
+import {selectAuth} from './authSlice';
 
 function Auth() {
 
+    const auth = useSelector(selectAuth);
+    const navigate = useNavigate();
     const [button, buttonClicked] = useState(true);
     const dispatch = useDispatch();
 
@@ -14,6 +19,12 @@ function Auth() {
         dispatch(isAuth());
     },[])
 
+    useEffect(() => {
+        if(auth.isAuthenticated) {
+            navigate('/profile');
+        }
+    },[auth]);
+    
     return (
         <div className='auth-container'>
             <h1 > <strong>MERN</strong> Sessions Auth App </h1>
