@@ -10,7 +10,10 @@ function Profile() {
 
     return (
         <div>
-           <span>Hello {auth.user.name} , You have successfuly logged in!</span> 
+            {
+                auth.isLoading ? <div><h1>LOADING</h1></div> :
+            <span>Hello {auth.user.name} , You have successfuly logged in!</span>
+            } 
         </div>
     )
 }

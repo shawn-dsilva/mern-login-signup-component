@@ -1,10 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import {RegisterThunk} from './authService';
 
 function Register({buttonClicked}) {
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
       buttonClicked(false);
@@ -12,7 +17,8 @@ function Register({buttonClicked}) {
 
 
     const handleSubmit = () => {
-
+      const data = {'name':username, 'email':email, 'password':password};
+      dispatch(RegisterThunk(data));
     }
 
     return (

@@ -1,25 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { Outlet, Link, useNavigate } from "react-router-dom";
-import {isAuth} from './authService';
-import {selectAuth} from './authSlice';
+import React from 'react';
+import { Outlet, Link } from "react-router-dom";
+
 
 function Auth({button}) {
 
-    const auth = useSelector(selectAuth);
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(isAuth());
-    },[])
-
-    useEffect(() => {
-        if(auth.isAuthenticated) {
-            navigate('/profile');
-        }
-    },[auth]);
-    
     return (
         <div className='auth-container'>
             <h1 > <strong>MERN</strong> Sessions Auth App </h1>

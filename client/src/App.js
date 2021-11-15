@@ -1,26 +1,48 @@
-import React,{useState} from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import {Routes, Route} from 'react-router-dom';
-import Profile from './features/auth/Profile';
-import Register from './features/auth/Register';
-import Login from './features/auth/Login';
+import React, { useEffect, useState } from "react";
 
-import './App.css';
-import Auth from './features/auth/Auth';
+import { Routes, Route } from "react-router-dom";
+import Profile from "./features/auth/Profile";
+import Register from "./features/auth/Register";
+import Login from "./features/auth/Login";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, Navigate } from "react-router-dom";
+import "./App.css";
+import Auth from "./features/auth/Auth";
+import { isAuth } from "./features/auth/authService";
+import { selectAuth } from "./features/auth/authSlice";
+
 
 function App() {
-
   const [button, buttonClicked] = useState(true);
+
+  const auth = useSelector(selectAuth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(isAuth());
+  }, []);
+
+  useEffect(() => {
+    if (auth.isAuthenticated) {
+      navigate("/profile");
+    }
+  }, [auth]);
 
   return (
     <div className="App">
       <header className="App-header">
         <Routes>
-          <Route path="/profile" element={<Profile/>} />
-          <Route path="/" element={<Auth button={button} />} >
-              <Route path="/login" element={<Login buttonClicked={buttonClicked} />} />
-             <Route path="/register" element={<Register buttonClicked={buttonClicked} />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/" element={<Auth button={button} />}>
+            <Route
+              path="/login"
+              element={<Login buttonClicked={buttonClicked} />}
+            />
+            <Route
+              path="/register"
+              element={<Register buttonClicked={buttonClicked} />}
+            />
           </Route>
         </Routes>
       </header>
