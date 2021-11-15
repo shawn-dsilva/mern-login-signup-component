@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Routes>
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile buttonClicked={buttonClicked} />} />
           <Route path="/" element={<Auth button={button} />}>
             <Route
               path="/login"
