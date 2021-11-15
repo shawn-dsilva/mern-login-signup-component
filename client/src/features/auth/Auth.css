@@ -18,7 +18,7 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     width: 25%;
     min-height: 50%;
-    max-height: 65%;
+    max-height: fit-content;
     margin: auto;
 }
 
@@ -51,7 +51,7 @@
    font-size: 1.2rem;
    cursor:pointer!important;
    margin-bottom: 3rem;
-   border:2px darkgrey solid;
+   border:2px #d3d3d3 solid;
    border-radius: 5px;
 }
 
