@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Auth.css';
 import {Link} from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {Login as LoginService} from './authService';
 
 

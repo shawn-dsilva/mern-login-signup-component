@@ -5,7 +5,7 @@ import Profile from "./features/auth/Profile";
 import Register from "./features/auth/Register";
 import Login from "./features/auth/Login";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import "./App.css";
 import Auth from "./features/auth/Auth";
 import { isAuth } from "./features/auth/authService";
