@@ -19,3 +19,11 @@ export const Login = createAsyncThunk(
       return response.data;
     }
   );
+
+export const RegisterThunk = createAsyncThunk(
+    'auth/Register',
+    async (data) => {
+      const response = await axios.post("/api/users/register", data, headers, {withCredentials: true});
+      return response.data;
+    }
+  );

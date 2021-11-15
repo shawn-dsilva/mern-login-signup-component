@@ -1,9 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { isAuth, Login } from './authService';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { isAuth, Login, RegisterThunk } from './authService';
 
 const initialState = {
   isAuthenticated: false,
   user:{},
+  isLoading:false,
 };
 
 export const authSlice = createSlice({
@@ -13,28 +14,26 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(isAuth.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(isAuth.fulfilled, (state, action) => {
-        state.status = 'idle';
-        state.user = action.payload;
-        state.isAuthenticated = true;
-      })
-      .addCase(isAuth.rejected, (state, action) => {
-        state.status = 'idle';
-      })
-      .addCase(Login.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(Login.fulfilled, (state, action) => {
-        state.status = 'idle';
-        state.user = action.payload;
-        state.isAuthenticated = true;
-      })
-      .addCase(Login.rejected, (state, action) => {
-        state.status = 'idle';
-      })
+    .addMatcher(
+      isAnyOf(isAuth.pending, Login.pending),
+      (state, action) => {
+        state.isLoading = true;
+      }
+    )
+    .addMatcher(
+        isAnyOf(isAuth.fulfilled, Login.fulfilled),
+        (state, action) => {
+          state.isLoading = false;
+          state.user = action.payload;
+          state.isAuthenticated = true;
+        }
+    )
+    .addMatcher(
+      isAnyOf(isAuth.rejected, Login.rejected),
+      (state, action) => {
+        state.isLoading = false;
+      }
+    )
   },
 });
 
