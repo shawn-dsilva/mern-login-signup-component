@@ -27,3 +27,11 @@ export const RegisterThunk = createAsyncThunk(
       return response.data;
     }
   );
+
+  export const LogoutThunk = createAsyncThunk(
+    'auth/Logout',
+    async () => {
+      const response = await  axios.delete("/api/users/logout", { withCredentials: true });
+      return response.data;
+    }
+  );

@@ -74,3 +74,10 @@
     color:#272a2c;
     text-decoration: none;
 }
+
+.logout {
+    padding: 1rem;
+    background-color: cornflowerblue;
+    width: 5%;
+    margin: 0 auto;
+}

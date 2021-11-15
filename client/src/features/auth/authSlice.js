@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { isAuth, Login, RegisterThunk } from './authService';
+import { isAuth, Login, RegisterThunk, LogoutThunk } from './authService';
 
 const initialState = {
   isAuthenticated: false,
@@ -29,9 +29,11 @@ export const authSlice = createSlice({
         }
     )
     .addMatcher(
-      isAnyOf(isAuth.rejected, Login.rejected),
+      isAnyOf(isAuth.rejected, Login.rejected,LogoutThunk.fulfilled),
       (state, action) => {
         state.isLoading = false;
+        state.isAuthenticated = false;
+        state.user = {};
       }
     )
   },
