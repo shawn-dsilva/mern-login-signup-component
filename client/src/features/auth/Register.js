@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { selectError } from "./authSlice";
+import { selectError,clearError } from "./authSlice";
 import TimedError from './TimedError';
 import {RegisterThunk} from './authService';
 
@@ -16,6 +16,7 @@ function Register({buttonClicked}) {
 
     useEffect(() => {
       buttonClicked(false);
+      dispatch(clearError());
     },[])
 
 
@@ -58,7 +59,7 @@ function Register({buttonClicked}) {
         {error.errMsg && <TimedError errorMessage={error.errMsg}/>}
         <button  onClick={(e) => handleSubmit(e)}>
           Register
-          <i class="fas fa-arrow-right"></i>
+          <i class="fas fa-arrow-circle-right"></i>
         </button>
         </div>
       </div>

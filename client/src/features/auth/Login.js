@@ -3,7 +3,7 @@ import './Auth.css';
 import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {Login as LoginService} from './authService';
-import { selectError } from "./authSlice";
+import { selectError, clearError } from "./authSlice";
 import TimedError from './TimedError';
 
 
@@ -16,6 +16,7 @@ function Login({buttonClicked}) {
 
     useEffect(() => {
         buttonClicked(false);
+        dispatch(clearError());
     },[])
 
 
@@ -49,7 +50,7 @@ function Login({buttonClicked}) {
          >
         </input>
         {error.errMsg && <TimedError errorMessage={error.errMsg}/>}
-        <button  onClick={e => handleSubmit(e)}>Login <i class="fas fa-arrow-right"></i></button>
+        <button  onClick={e => handleSubmit(e)}>Login <i class="fas fa-arrow-circle-right"></i></button>
         </div>
         </div>
     )

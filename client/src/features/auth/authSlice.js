@@ -12,6 +12,10 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    clearError: (state) => {
+      state.error.isError = false;
+      state.error.errMsg = "";
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -41,6 +45,8 @@ export const authSlice = createSlice({
     )
   },
 });
+
+export const { clearError } = authSlice.actions;
 
 export const selectAuth = (state) => state.auth;
 
