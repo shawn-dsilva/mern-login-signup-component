@@ -3,8 +3,9 @@ import './Auth.css';
 import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {Login as LoginService} from './authService';
-import { selectError, clearError } from "./authSlice";
+import authSlice, { selectError, clearError, selectAuth } from "./authSlice";
 import TimedError from './TimedError';
+import LoadingSpinner from './LoadingSpinner';
 
 
 function Login({buttonClicked}) {
@@ -13,6 +14,7 @@ function Login({buttonClicked}) {
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const error = useSelector(selectError);
+    const auth = useSelector(selectAuth);
 
     useEffect(() => {
         buttonClicked(false);
@@ -50,7 +52,10 @@ function Login({buttonClicked}) {
          >
         </input>
         {error.errMsg && <TimedError errorMessage={error.errMsg}/>}
-        <button  onClick={e => handleSubmit(e)}>Login <i class="fas fa-arrow-circle-right"></i></button>
+        <button  onClick={e => handleSubmit(e)}> {
+            auth.isLoading ? <LoadingSpinner/> : <div style={{padding:'1rem'}}>Login <i class="fas fa-arrow-circle-right"></i></div>
+        }
+            </button>
         </div>
         </div>
     )

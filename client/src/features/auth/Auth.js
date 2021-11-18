@@ -7,7 +7,7 @@ function Auth({button}) {
     return (
         <div className='auth-container'>
             <div className='main-text'>
-                <h1 > <strong>MERN</strong> Sessions Auth App </h1>
+                <h1 > <strong>MERN</strong> Login Signup Starter </h1>
                 <p>Modern, Fully Featured Sessions based Authentication app <span role="img" aria-label="lock">🔒</span> and MERN starter template. </p>
                 <p>Featuring account confirmation through e-mail, password reset workflow, user avatar upload and more! </p>
                 <br></br>

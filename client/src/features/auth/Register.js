@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { selectError,clearError } from "./authSlice";
+import { selectError,clearError, selectAuth } from "./authSlice";
 import TimedError from './TimedError';
 import {RegisterThunk} from './authService';
+import LoadingSpinner from './LoadingSpinner';
 
 function Register({buttonClicked}) {
 
@@ -12,6 +13,8 @@ function Register({buttonClicked}) {
     const [username, setUsername] = useState("");
     const dispatch = useDispatch();
     const error = useSelector(selectError);
+    const auth = useSelector(selectAuth);
+
 
 
     useEffect(() => {
@@ -57,9 +60,9 @@ function Register({buttonClicked}) {
           onChange={(e) => setPassword(e.target.value)}
         ></input>
         {error.errMsg && <TimedError errorMessage={error.errMsg}/>}
-        <button  onClick={(e) => handleSubmit(e)}>
-          Register
-          <i class="fas fa-arrow-circle-right"></i>
+        <button  onClick={(e) => handleSubmit(e)}>{
+            auth.isLoading ? <LoadingSpinner/> : <div style={{padding:'1rem'}}>Register <i class="fas fa-arrow-circle-right"></i></div>
+        }
         </button>
         </div>
       </div>

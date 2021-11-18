@@ -59,7 +59,6 @@
 
 .auth-card button, .profile-card button {
    height: auto;
-   padding:1rem;
    font-size: 1.2rem;
    cursor:pointer!important;
    margin-bottom: 3rem;
@@ -74,10 +73,13 @@
  }
  
 .auth-card h1 {
-    margin:1rem 0;
+    margin:1rem auto;
     margin-bottom: 0.3rem;
+    padding-bottom:0.6rem;
     font-weight: 800;
     font-size: 2.5rem;
+    border-bottom: 8px solid #006cff;
+    width: fit-content;
 }
 
 .auth-card span {
@@ -121,3 +123,33 @@
     color:#d44545!important;
     width:100%!important
   }
+
+.main-text strong {
+    font-weight: 900;
+}
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+  }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin: 10px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

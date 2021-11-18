@@ -20,7 +20,7 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
     .addMatcher(
-      isAnyOf(isAuth.pending, Login.pending),
+      isAnyOf(isAuth.pending, Login.pending, RegisterThunk.pending),
       (state, action) => {
         state.isLoading = true;
       }
