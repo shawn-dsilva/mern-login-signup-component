@@ -18,6 +18,8 @@ function Login({buttonClicked}) {
 
     useEffect(() => {
         buttonClicked(false);
+        // Clears error status and data when new component is loaded, so that old error data
+        // does not appear
         dispatch(clearError());
     },[])
 
