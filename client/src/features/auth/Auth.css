@@ -16,14 +16,14 @@
     flex-direction: column;
     border-radius: 10px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    width: 25%;
+    width: 20%;
     min-height: 50%;
     max-height: fit-content;
     margin: auto;
 }
 
 .auth-card-container {
-    width: 75%;
+    width: 85%;
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -36,6 +36,18 @@
     border:2px solid lightgrey;
     border-radius: 5px;
     margin: 1rem 0;
+}
+
+
+.auth-card input:focus {
+    outline:none;
+    border: 2px #006cff solid;
+}
+
+.auth-card button {
+    background-color: #006cff;
+    border: 2px #006cff solid;
+    color:white;
 }
 
 .auth-card label {
@@ -51,23 +63,28 @@
    font-size: 1.2rem;
    cursor:pointer!important;
    margin-bottom: 3rem;
-   border:2px #d3d3d3 solid;
+   background-color: #006cff;
+   border: 2px #006cff solid;
    border-radius: 5px;
 }
 
 .auth-card button:hover, .profile-card button:hover, .main-button:hover {
-    background-color:#d3d3d3;
+    background-color:#005bdb;
+    border: 2px #005bdb solid!important;
  }
  
 .auth-card h1 {
     margin:1rem 0;
     margin-bottom: 0.3rem;
+    font-weight: 800;
+    font-size: 2.5rem;
 }
 
 .auth-card span {
     display: block;
     margin: 0.5rem auto;
     margin-bottom: 1rem;
+    color:darkslategrey;
 }
 
 .main-button {
@@ -75,14 +92,32 @@
     font-size: 2rem;
     font-weight: 400;
     cursor:pointer;
-    background-color: #e2e2e2;
-    border: 2px lightgrey solid;
-    border-radius: 5px;
+    background-color: #006cff;
+    border: 2px #006cff solid;
+    border-radius: 10px;
     padding:1rem 2rem;
-    color:#272a2c;
+    color:white;
     text-decoration: none;
 }
 
 .logout {
     margin: 0 auto;
 }
+
+.error-message {
+    background-color: #fc747433;
+    color:#d44545;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  
+.error-message strong {
+    font-weight: 800;
+}
+
+.error-message p {
+    font-size: 1.1rem!important;
+    font-weight: 400!important;
+    color:#d44545!important;
+    width:100%!important
+  }

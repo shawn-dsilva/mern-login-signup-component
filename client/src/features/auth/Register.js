@@ -24,7 +24,7 @@ function Register({buttonClicked}) {
     return (
       <div className="auth-card">
         <div className="auth-card-container">
-        <h1>REGISTER</h1>
+        <h1>Register</h1>
         <span>
         Already have an account? <Link className='divStyle' to="/login"> Login. </Link>
         </span>
@@ -54,6 +54,7 @@ function Register({buttonClicked}) {
         ></input>
         <button  onClick={(e) => handleSubmit(e)}>
           Register
+          <i class="fas fa-arrow-right"></i>
         </button>
         </div>
       </div>

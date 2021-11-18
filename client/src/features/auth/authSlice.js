@@ -5,6 +5,7 @@ const initialState = {
   isAuthenticated: false,
   user:{},
   isLoading:false,
+  error:{isError:false,errMsg:""}
 };
 
 export const authSlice = createSlice({
@@ -34,12 +35,16 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isAuthenticated = false;
         state.user = {};
+        state.error.isError = true;
+        state.error.errMsg = action.payload;
       }
     )
   },
 });
 
 export const selectAuth = (state) => state.auth;
+
+export const selectError = (state) => state.auth.error;
 
 
 export default authSlice.reducer;

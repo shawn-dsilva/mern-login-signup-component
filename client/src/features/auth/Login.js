@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import './Auth.css';
 import {Link} from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {Login as LoginService} from './authService';
+import { selectError } from "./authSlice";
+import TimedError from './TimedError';
 
 
 function Login({buttonClicked}) {
@@ -10,6 +12,7 @@ function Login({buttonClicked}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
+    const error = useSelector(selectError);
 
     useEffect(() => {
         buttonClicked(false);
@@ -24,7 +27,7 @@ function Login({buttonClicked}) {
     return (
         <div className="auth-card">
             <div className="auth-card-container">
-            <h1>LOGIN</h1>
+            <h1>Login</h1>
             <span>
                 Don't have an account? <Link className='divStyle' to="/register"> Register. </Link>
             </span>
@@ -45,7 +48,8 @@ function Login({buttonClicked}) {
          onChange={e => setPassword(e.target.value)}
          >
         </input>
-        <button  onClick={e => handleSubmit(e)}>Login</button>
+        {error.errMsg && <TimedError errorMessage={error.errMsg}/>}
+        <button  onClick={e => handleSubmit(e)}>Login <i class="fas fa-arrow-right"></i></button>
         </div>
         </div>
     )
