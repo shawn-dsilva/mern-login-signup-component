@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectError } from "./authSlice";
+import TimedError from './TimedError';
 import {RegisterThunk} from './authService';
 
 function Register({buttonClicked}) {
@@ -9,6 +11,7 @@ function Register({buttonClicked}) {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const dispatch = useDispatch();
+    const error = useSelector(selectError);
 
 
     useEffect(() => {
@@ -52,6 +55,7 @@ function Register({buttonClicked}) {
           name="password"
           onChange={(e) => setPassword(e.target.value)}
         ></input>
+        {error.errMsg && <TimedError errorMessage={error.errMsg}/>}
         <button  onClick={(e) => handleSubmit(e)}>
           Register
           <i class="fas fa-arrow-right"></i>

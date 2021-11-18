@@ -18,17 +18,21 @@ export const Login = createAsyncThunk(
       try {
         const response = await axios.post("/api/users/login", data, headers, {withCredentials: true});
         return response.data;
-      }catch (err) {
-        return rejectWithValue(err.response.data)
+      } catch (err) {
+        return rejectWithValue(err.response.data);
       }
     }
   );
 
 export const RegisterThunk = createAsyncThunk(
     'auth/Register',
-    async (data) => {
-      const response = await axios.post("/api/users/register", data, headers, {withCredentials: true});
-      return response.data;
+    async (data, {rejectWithValue}) => {
+      try {
+        const response = await axios.post("/api/users/register", data, headers, {withCredentials: true});
+        return response.data;
+      } catch (err) {
+        return rejectWithValue(err.response.data);
+      }
     }
   );
 

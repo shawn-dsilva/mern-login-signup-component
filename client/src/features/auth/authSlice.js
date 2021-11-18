@@ -30,7 +30,7 @@ export const authSlice = createSlice({
         }
     )
     .addMatcher(
-      isAnyOf(isAuth.rejected, Login.rejected,LogoutThunk.fulfilled),
+      isAnyOf(isAuth.rejected, Login.rejected,LogoutThunk.fulfilled, RegisterThunk.rejected),
       (state, action) => {
         state.isLoading = false;
         state.isAuthenticated = false;
