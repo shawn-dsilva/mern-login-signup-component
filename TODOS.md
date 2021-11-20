@@ -8,4 +8,5 @@
 - [ ] Google OAuth2.
 - [ ] Microsoft OAuth2.
 - [ ] Expand user profile to include default avatar generation, avatar upload/selection/cropping and other options.
-- [ ] Refactor Frontend and Backend to TypeScript.
+- [ ] Refactor Frontend to TypeScript.
+- [ ] Refactor Backend to TypeScript.
