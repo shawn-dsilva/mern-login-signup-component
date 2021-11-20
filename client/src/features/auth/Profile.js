@@ -21,7 +21,7 @@ function Profile({buttonClicked}) {
         <div className='profile-card'>
 
             <p>Hello {auth.user.name} , You have successfuly logged in!</p>
-            <button className="logout" onClick={()=>{handleLogout()}}>Logout</button>
+            <button className="logout" onClick={()=>{handleLogout()}}>Logout <i class="fas fa-sign-out-alt"></i></button>
         </div>
     )
 }

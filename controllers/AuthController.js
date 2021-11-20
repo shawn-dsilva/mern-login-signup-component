@@ -41,8 +41,11 @@ exports.registerUser = (req, res) => {
             // Save user
             newUser
               .save()
-              .then(
-                res.json("Successfully Registered")
+              .then( (user) => {
+                let sessUser = { id: user.id, name: user.name, email: user.email };
+                req.session.user = sessUser; // Auto saves session data in mongo store
+                res.json(sessUser);
+              }
               )
               .catch((err) => console.log(err));
           })
