@@ -11,7 +11,7 @@ function Auth({button}: {button:boolean}) {
                 <p>Modern, Fully Featured Sessions based Authentication app <span role="img" aria-label="lock">🔒</span> and MERN starter template. </p>
                 <p>Featuring account confirmation through e-mail, password reset workflow, user avatar upload and more! </p>
                 <br></br>
-                <p>Built with Functional Component and Hooks based React, Redux Toolkit, NodeJS, Express and MongoDB</p>
+                <p>Built with Functional Component and Hooks based React written in TypeScript, Redux Toolkit, NodeJS, Express, MongoDB and Docker</p>
                 <br></br>
                 <p>Made By <a href="https://wwww.shawndsilva.com">Shawn D'silva</a>. Source on <a href="https://github.com/shawn-dsilva/mern-login-signup-component">GitHub</a></p>
             <br/>
