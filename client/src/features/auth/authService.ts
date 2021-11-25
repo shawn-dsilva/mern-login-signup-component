@@ -2,9 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import {AxiosError} from "axios";
 
-const headers = {
-  "Content-Type": "application/json",
-};
 
 interface ValidationErrors {
   errorMessage: string
@@ -31,12 +28,10 @@ export const Login = createAsyncThunk(
       const response = await axios.post("/api/users/login", data);
       return response.data;
     } catch (err) {
-      if(err instanceof Error ) {
       let error = err as AxiosError<ValidationErrors>  // cast the error for access
       // Custom error message from Server returned to reducer using rejectWithValue
       // This error is available in action.payload unlike action.error for unhandled errors
-      return rejectWithValue(error.message);
-      }
+      return rejectWithValue(error.response?.data);
     }
   }
 );
@@ -51,7 +46,7 @@ export const RegisterThunk = createAsyncThunk(
       let error = err as AxiosError<ValidationErrors>  // cast the error for access
       // Custom error message from Server returned to reducer using rejectWithValue
       // This error is available in action.payload unlike action.error for unhandled errors
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response?.data);
     }
   }
 );
