@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { useNavigate } from 'react-router-dom';
 import { LogoutThunk} from './authService';
 import {selectAuth} from './authSlice';
@@ -7,8 +7,8 @@ import {selectAuth} from './authSlice';
 
 function Profile({buttonClicked}: {buttonClicked:any}) {
 
-    const auth = useSelector(selectAuth);
-    const dispatch = useDispatch();
+    const auth = useAppSelector(selectAuth);
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const handleLogout = () => {

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './Auth.css';
 import {Link} from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
-import {Login as LoginService} from './authService';
-import authSlice, { selectError, clearError, selectAuth } from "./authSlice";
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import {LoginThunk} from './authService';
+import { selectError, clearError, selectAuth } from "./authSlice";
 import TimedError from './TimedError';
 import LoadingSpinner from './LoadingSpinner';
 
@@ -12,9 +12,9 @@ function Login({buttonClicked}: {buttonClicked:any}) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const dispatch = useDispatch();
-    const error = useSelector(selectError);
-    const auth = useSelector(selectAuth);
+    const dispatch = useAppDispatch();
+    const error = useAppSelector(selectError);
+    const auth = useAppSelector(selectAuth);
 
     useEffect(() => {
         buttonClicked(false);
@@ -26,7 +26,7 @@ function Login({buttonClicked}: {buttonClicked:any}) {
 
     const handleSubmit = () => {
         const data = {'email':email, 'password':password};
-        dispatch(LoginService(data));
+        dispatch(LoginThunk(data));
     }
 
     return (

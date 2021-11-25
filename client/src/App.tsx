@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-
 import { Routes, Route } from "react-router-dom";
 import Profile from "./features/auth/Profile";
 import Register from "./features/auth/Register";
 import Login from "./features/auth/Login";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from './app/hooks';
 import { useNavigate} from "react-router-dom";
 import "./App.css";
 import Auth from "./features/auth/Auth";
@@ -15,9 +14,9 @@ import { selectAuth } from "./features/auth/authSlice";
 function App() {
   const [button, buttonClicked] = useState(true);
 
-  const auth = useSelector(selectAuth);
+  const auth = useAppSelector(selectAuth);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(isAuth());

@@ -21,7 +21,7 @@ export const isAuth = createAsyncThunk("auth/isAuth", async () => {
   return response.data;
 });
 
-export const Login = createAsyncThunk(
+export const LoginThunk = createAsyncThunk(
   "auth/Login",
   async (data: IUserFormData, { rejectWithValue }) => {
     try {

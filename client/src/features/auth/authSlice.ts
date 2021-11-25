@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { isAuth, Login, RegisterThunk, LogoutThunk } from './authService';
+import { isAuth, LoginThunk, RegisterThunk, LogoutThunk } from './authService';
 import { RootState } from '../../app/store';
 
 interface IAuthState  {
@@ -40,13 +40,13 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
     .addMatcher(
-      isAnyOf(isAuth.pending, Login.pending, RegisterThunk.pending),
+      isAnyOf(isAuth.pending, LoginThunk.pending, RegisterThunk.pending),
       (state) => {
         state.isLoading = true;
       }
     )
     .addMatcher(
-        isAnyOf(isAuth.fulfilled, Login.fulfilled,RegisterThunk.fulfilled),
+        isAnyOf(isAuth.fulfilled, LoginThunk.fulfilled,RegisterThunk.fulfilled),
         (state, action) => {
           state.isLoading = false;
           state.user = action.payload;
@@ -54,7 +54,7 @@ export const authSlice = createSlice({
         }
     )
     .addMatcher(
-      isAnyOf(isAuth.rejected, Login.rejected,LogoutThunk.fulfilled, RegisterThunk.rejected),
+      isAnyOf(isAuth.rejected, LoginThunk.rejected,LogoutThunk.fulfilled, RegisterThunk.rejected),
       (state, action) => {
         state.isLoading = false;
         state.isAuthenticated = false;

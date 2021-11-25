@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { selectError,clearError, selectAuth } from "./authSlice";
 import TimedError from './TimedError';
 import {RegisterThunk} from './authService';
@@ -11,9 +11,9 @@ function Register({buttonClicked} : {buttonClicked:any}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
-    const dispatch = useDispatch();
-    const error = useSelector(selectError);
-    const auth = useSelector(selectAuth);
+    const dispatch = useAppDispatch();
+    const error = useAppSelector(selectError);
+    const auth = useAppSelector(selectAuth);
 
 
 
