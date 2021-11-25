@@ -1,7 +1,27 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { isAuth, Login, RegisterThunk, LogoutThunk } from './authService';
+import { RootState } from '../../app/store';
 
-const initialState = {
+interface IAuthState  {
+  isAuthenticated: boolean,
+  user: IUser,
+  isLoading: boolean,
+  error: IError
+}
+
+interface IUser {
+  id?: string,
+  name?: string,
+  email?: string
+}
+
+interface IError {
+  isError: boolean,
+  errMsg: string
+}
+
+
+const initialState: IAuthState = {
   isAuthenticated: false,
   user: {},
   isLoading: false,
@@ -50,8 +70,8 @@ export const authSlice = createSlice({
 export const { clearError } = authSlice.actions;
 
 // Exporting pieces of state to be used in components with useSelector Hook
-export const selectAuth = (state) => state.auth;
-export const selectError = (state) => state.auth.error;
+export const selectAuth = (state : RootState) => state.auth;
+export const selectError = (state : RootState ) => state.auth.error;
 
 
 // Reducer export

@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 
-function TimedError({errorMessage}) {
+function TimedError({errorMessage} : {errorMessage:string}) {
     const [visible, setVisible] = useState(false)
    useEffect(() => {
      if(!errorMessage){
@@ -16,7 +16,7 @@ function TimedError({errorMessage}) {
    if(!visible) return null
     return (
         <div className="error-message">
-            <strong> <i class="fas fa-exclamation-triangle"></i> ERROR </strong>
+            <strong> <i className="fas fa-exclamation-triangle"></i> ERROR </strong>
             <p>{errorMessage}</p>
         </div>
     )

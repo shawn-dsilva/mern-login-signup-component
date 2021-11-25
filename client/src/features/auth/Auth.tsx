@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet, Link } from "react-router-dom";
 
 
-function Auth({button}) {
+function Auth({button}: {button:boolean}) {
 
     return (
         <div className='auth-container'>

@@ -8,7 +8,7 @@ import TimedError from './TimedError';
 import LoadingSpinner from './LoadingSpinner';
 
 
-function Login({buttonClicked}) {
+function Login({buttonClicked}: {buttonClicked:any}) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -54,8 +54,8 @@ function Login({buttonClicked}) {
          >
         </input>
         {error.errMsg && <TimedError errorMessage={error.errMsg}/>}
-        <button  onClick={e => handleSubmit(e)}> {
-            auth.isLoading ? <LoadingSpinner/> : <div style={{padding:'1rem'}}>Login <i class="fas fa-arrow-circle-right"></i></div>
+        <button  onClick={e => handleSubmit()}> {
+            auth.isLoading ? <LoadingSpinner/> : <div style={{padding:'1rem'}}>Login <i className="fas fa-arrow-circle-right"></i></div>
         }
             </button>
         </div>

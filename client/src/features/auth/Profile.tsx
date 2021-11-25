@@ -5,7 +5,7 @@ import { LogoutThunk} from './authService';
 import {selectAuth} from './authSlice';
 
 
-function Profile({buttonClicked}) {
+function Profile({buttonClicked}: {buttonClicked:any}) {
 
     const auth = useSelector(selectAuth);
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function Profile({buttonClicked}) {
         <div className='profile-card'>
 
             <p>Hello {auth.user.name} , You have successfuly logged in!</p>
-            <button className="logout" onClick={()=>{handleLogout()}}>Logout <i class="fas fa-sign-out-alt"></i></button>
+            <button className="logout" onClick={()=>{handleLogout()}}>Logout <i className="fas fa-sign-out-alt"></i></button>
         </div>
     )
 }

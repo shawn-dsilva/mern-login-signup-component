@@ -6,7 +6,7 @@ import TimedError from './TimedError';
 import {RegisterThunk} from './authService';
 import LoadingSpinner from './LoadingSpinner';
 
-function Register({buttonClicked}) {
+function Register({buttonClicked} : {buttonClicked:any}) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -60,8 +60,8 @@ function Register({buttonClicked}) {
           onChange={(e) => setPassword(e.target.value)}
         ></input>
         {error.errMsg && <TimedError errorMessage={error.errMsg}/>}
-        <button  onClick={(e) => handleSubmit(e)}>{
-            auth.isLoading ? <LoadingSpinner/> : <div style={{padding:'1rem'}}>Register <i class="fas fa-arrow-circle-right"></i></div>
+        <button  onClick={(e) => handleSubmit()}>{
+            auth.isLoading ? <LoadingSpinner/> : <div style={{padding:'1rem'}}>Register <i className="fas fa-arrow-circle-right"></i></div>
         }
         </button>
         </div>
