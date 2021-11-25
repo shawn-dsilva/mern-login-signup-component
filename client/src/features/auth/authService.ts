@@ -8,7 +8,7 @@ interface ValidationErrors {
   field_errors: Record<string, string>
 }
 
-interface IUserData {
+interface IUserFormData {
   name?: string,
   email: string,
   password: string,
@@ -23,7 +23,7 @@ export const isAuth = createAsyncThunk("auth/isAuth", async () => {
 
 export const Login = createAsyncThunk(
   "auth/Login",
-  async (data: IUserData, { rejectWithValue }) => {
+  async (data: IUserFormData, { rejectWithValue }) => {
     try {
       const response = await axios.post("/api/users/login", data);
       return response.data;
@@ -38,7 +38,7 @@ export const Login = createAsyncThunk(
 
 export const RegisterThunk = createAsyncThunk(
   "auth/Register",
-  async (data: IUserData, { rejectWithValue }) => {
+  async (data: IUserFormData, { rejectWithValue }) => {
     try {
       const response = await axios.post("/api/users/register", data);
       return response.data;

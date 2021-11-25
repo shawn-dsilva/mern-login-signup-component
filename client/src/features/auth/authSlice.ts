@@ -4,12 +4,12 @@ import { RootState } from '../../app/store';
 
 interface IAuthState  {
   isAuthenticated: boolean,
-  user: IUser,
+  user: IUserData,
   isLoading: boolean,
   error: IError
 }
 
-interface IUser {
+interface IUserData {
   id?: string,
   name?: string,
   email?: string
