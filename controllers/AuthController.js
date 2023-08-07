@@ -1,6 +1,5 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/User"); // User model
-const Joi = require('@hapi/joi');
 const { registerSchema, loginSchema } = require('../utils/userValidations');
 
 

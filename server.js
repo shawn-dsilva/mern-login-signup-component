@@ -5,7 +5,6 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const router = express.Router();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const path = require("path");
 const helmet = require('helmet');
 const cors = require('cors');
 
