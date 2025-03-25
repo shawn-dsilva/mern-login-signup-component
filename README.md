@@ -13,7 +13,6 @@ Minimalistic, ready-to-use component for Sessions based Login and Sign-Up using 
 - Logout deletes session in database and cookie from browser
 - Fully responsive across Desktop, Tablet and Mobile
 
-
 ## Prerequisites
 
 - Node.js
@@ -43,19 +42,31 @@ Install packages for React client
  cd mern-login-signup-component/client
  npm install
 ```
+
 To Test Locally
 
-remove the line ```"homepage": "https://demos.shawndsilva.com/sessions-auth-app",```
-from ```client/package.json```
-remove ```basename="/sessions-auth-app"```
-from ```client/src/index.js```
-
+remove the line `"homepage": "https://demos.shawndsilva.com/sessions-auth-app",`
+from `client/package.json`
+remove `basename="/sessions-auth-app"`
+from `client/src/index.js`
 
 Start Dev Server ( both React server and Nodejs server )
 
 ```
  npm run dev
 ```
+
+To fix error
+
+```
+RUN npm install react-scripts -g:
+0.421 Error: could not get uid/gid
+
+```
+
+Add `RUN npm config set unsafe-perm true` to `client/dockerfile`
+
+To fix can't proxy request while running in docker container add `"proxy": "http://server:5000"` to client/package.json
 
 ## Image Gallery
 

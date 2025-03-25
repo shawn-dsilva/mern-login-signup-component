@@ -9,6 +9,7 @@ ENV PATH /client/node_modules/.bin:$PATH
 
 # copies package.json from directory and installs packages,also installs react
 COPY package.json /client/package.json
+RUN npm config set unsafe-perm true
 RUN npm install react-scripts -g
 RUN npm install
 

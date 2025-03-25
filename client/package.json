@@ -22,8 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000",
-  "homepage": "https://demos.shawndsilva.com/sessions-auth-app",
+  "proxy": "http://server:5000",
   "eslintConfig": {
     "extends": "react-app"
   },
