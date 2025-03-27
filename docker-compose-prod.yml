@@ -1,31 +1,35 @@
 version: "3"
 services:
-    auth-server:
-        container_name: auth-server
-        hostname: auth-server
-        build:
-            context: .
-            dockerfile: dockerfile
-        ports:
-            - "5000:5000"
-        volumes:
-            - .:/server
-            - /server/node_modules
+  auth-server:
+    container_name: auth-server
+    hostname: auth-server
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/server
+      - /server/node_modules
+    networks:
+      - common_ext_network
 
-    client-prod:
-        container_name: client-prod
-        hostname: client-prod
-        build:
-            context: ./client
-            dockerfile: Dockerfile-prod
-        ports:
-            - "3000:3000"
-        volumes:
-            - ./client:/client
-            - /client/node_modules
-        links:
-            - auth-server
+  client-prod:
+    container_name: client-prod
+    hostname: client-prod
+    build:
+      context: ./client
+      dockerfile: Dockerfile-prod
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/client
+      - /client/node_modules
+    links:
+      - auth-server
+    networks:
+      - common_ext_network
 networks:
-    default:
-        external:
-            name: nginxrpgateway_default
+  common_ext_network:
+    external:
+      name: nginx-rp-gateway_default

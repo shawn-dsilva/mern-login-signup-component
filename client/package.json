@@ -22,7 +22,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://server:5000",
+  "homepage": "https://demos.shawndsilva.com/sessions-auth-app",
+  "proxy": "http://auth-server:5000",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -31,11 +32,9 @@
       ">0.2%",
       "not dead",
       "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.10"
   }
 }
