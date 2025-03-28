@@ -82,10 +82,11 @@ router.get("/", (req, res) => res.send("HELLO FRIEND"));
 
 // API / Routes;
 // Uncomment Below for Development
-// app.use("/api/users", require("./routes/users"));
+IS_PROD
+  ? app.use("/sessions-auth-app/api/users", require("./routes/users"))
+  : app.use("/api/users", require("./routes/users"));
 
 //Uncomment Below for Production, routes mounted at /sessions-auth-app and not root domain
-app.use("/sessions-auth-app/api/users", require("./routes/users"));
 // app.use("/api/auth", require("./routes/auth"));
 
 app.listen(PORT, () => console.log(`Server started on http://${HOST}:${PORT}`));
